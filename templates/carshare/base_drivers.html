@@ -17,10 +17,10 @@
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
-    //var marker_closest = "https://s3-eu-west-1.amazonaws.com/dietzcar/marker_closest.png";
-    //var marker_user = "https://s3-eu-west-1.amazonaws.com/dietzcar/marker_user.png";
-    var marker_closest = "{% static 'img/marker_closest.png' %}"
-    var marker_user = "{% static 'img/marker_user.png' %}
+    var marker_closest = "https://s3-eu-west-1.amazonaws.com/dietzcar/marker_closest.png";
+    var marker_user = "https://s3-eu-west-1.amazonaws.com/dietzcar/marker_user.png";
+    //var marker_closest = "{% static 'img/marker_closest.png' %}"
+    //var marker_user = "{% static 'img/marker_user.png' %}
     var marker = new google.maps.Marker({
             position: new google.maps.LatLng{{ my_loc }},
             title: "Me",

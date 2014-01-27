@@ -88,31 +88,29 @@ USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
 
-if not DEBUG:
-    DEFAULT_FILE_STORAGE = 'dietzcar.carshare.s3utils.MediaS3BotoStorage'
-    STATICFILES_STORAGE = 'dietzcar.carshare.s3utils.StaticS3BotoStorage'
-    AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-    DATABASES['default'] = dj_database_url.config()
-    STATIC_DIRECTORY = '/static/'
-    STATIC_URL = S3_URL + STATIC_DIRECTORY
-
-    # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-    # Allow all host headers
-    ALLOWED_HOSTS = ['*']
+# if not DEBUG:
+#     DEFAULT_FILE_STORAGE = 'dietzcar.carshare.s3utils.MediaS3BotoStorage'
+#     STATICFILES_STORAGE = 'dietzcar.carshare.s3utils.StaticS3BotoStorage'
+#     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
+#     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#     S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
+#     DATABASES['default'] = dj_database_url.config()
+#     STATIC_DIRECTORY = '/static/'
+#     STATIC_URL = S3_URL + STATIC_DIRECTORY
+#
+#     # Honor the 'X-Forwarded-Proto' header for request.is_secure()
+#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#
+#     # Allow all host headers
+#     ALLOWED_HOSTS = ['*']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-#STATIC_ROOT = '/static/'
+STATIC_ROOT = '/static/'
 
-#STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 
 # Parse database configuration from $DATABASE_URL
-
-
 
 # Static asset configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
