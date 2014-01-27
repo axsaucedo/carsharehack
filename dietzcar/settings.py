@@ -99,11 +99,11 @@ STATIC_URL = '/static/'
 #     STATIC_URL = S3_URL + STATIC_DIRECTORY
 #
 #     # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 #
-#     # Allow all host headers
-#     ALLOWED_HOSTS = ['*']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+#     # Allow all host headers
+ALLOWED_HOSTS = ['*']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_ROOT = '/static/'
