@@ -76,7 +76,7 @@
       <file leaf-file-name="base_drivers.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/carshare/base_drivers.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="74" selection-start="748" selection-end="748" vertical-scroll-proportion="0.4" vertical-offset="0" max-vertical-offset="936">
+            <state line="20" column="0" selection-start="674" selection-end="674" vertical-scroll-proportion="0.4" vertical-offset="0" max-vertical-offset="900">
               <folding />
             </state>
           </provider>
@@ -650,7 +650,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/carshare/base_drivers.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="74" selection-start="748" selection-end="748" vertical-scroll-proportion="0.4" vertical-offset="0" max-vertical-offset="936">
+        <state line="20" column="0" selection-start="674" selection-end="674" vertical-scroll-proportion="0.4" vertical-offset="0" max-vertical-offset="900">
           <folding />
         </state>
       </provider>
