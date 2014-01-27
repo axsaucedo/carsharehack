@@ -86,7 +86,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-STATIC_URL = '/static/'
+STATIC_URL = 'https://s3-eu-west-1.amazonaws.com/dietzcar/static/'
 
 # if not DEBUG:
 #     DEFAULT_FILE_STORAGE = 'dietzcar.carshare.s3utils.MediaS3BotoStorage'
