@@ -29,7 +29,7 @@
       <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dietzcar/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="65" selection-start="2253" selection-end="2253" vertical-scroll-proportion="0.2815534" vertical-offset="1323" max-vertical-offset="2250">
+            <state line="108" column="0" selection-start="3059" selection-end="3059" vertical-scroll-proportion="0.70873785" vertical-offset="1287" max-vertical-offset="2214">
               <folding>
                 <element signature="e#319#368#0" expanded="true" />
               </folding>
@@ -648,7 +648,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dietzcar/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="65" selection-start="2253" selection-end="2253" vertical-scroll-proportion="0.2815534" vertical-offset="1323" max-vertical-offset="2250">
+        <state line="108" column="0" selection-start="3059" selection-end="3059" vertical-scroll-proportion="0.70873785" vertical-offset="1287" max-vertical-offset="2214">
           <folding>
             <element signature="e#319#368#0" expanded="true" />
           </folding>

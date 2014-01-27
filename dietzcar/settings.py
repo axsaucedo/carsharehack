@@ -108,8 +108,6 @@ ALLOWED_HOSTS = ['*']
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 STATIC_ROOT = '/static/'
 
-STATIC_URL = '/static/'
-
 # Parse database configuration from $DATABASE_URL
 
 # Static asset configuration
