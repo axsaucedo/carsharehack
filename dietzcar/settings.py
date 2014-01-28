@@ -100,6 +100,7 @@ else:
     AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
     AWS_STORAGE_BUCKET_NAME = 'dietzcar'
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_QUERYSTRING_AUTH = False
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
