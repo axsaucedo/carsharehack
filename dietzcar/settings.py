@@ -22,7 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'sj2@d^=#y2(m9d%ax#fx$35r3)-mjk)@)luhd7iy$bze6dqde2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
+#DEBUG = os.environ.get('DEBUG', False)
+DEBUG = False
 
 TEMPLATE_DEBUG = True
 
@@ -86,36 +87,33 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+STATIC_ROOT = 'carshare/static/'
+
 if DEBUG:
     STATIC_URL = '/static/'
 else:
-    STATIC_URL = 'https://s3-eu-west-1.amazonaws.com/dietzcar/static/'
+    #STATIC_URL = 'https://s3-eu-west-1.amazonaws.com/dietzcar/static/'
+    STATIC_URL = 'https://dietzcar.s3.amazonaws.com/'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
+    AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+    AWS_STORAGE_BUCKET_NAME = 'dietzcar'
+    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-# if not DEBUG:
-#     DEFAULT_FILE_STORAGE = 'dietzcar.carshare.s3utils.MediaS3BotoStorage'
-#     STATICFILES_STORAGE = 'dietzcar.carshare.s3utils.StaticS3BotoStorage'
-#     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-#     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-#     S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-#     DATABASES['default'] = dj_database_url.config()
-#     STATIC_DIRECTORY = '/static/'
-#     STATIC_URL = S3_URL + STATIC_DIRECTORY
-#
-#     # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-#
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 #     # Allow all host headers
 ALLOWED_HOSTS = ['*']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
-STATIC_ROOT = '/static/'
+
 
 # Parse database configuration from $DATABASE_URL
 
 # Static asset configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '../static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, '../static'),
+# )
