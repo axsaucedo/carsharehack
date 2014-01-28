@@ -86,7 +86,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-STATIC_URL = 'https://s3-eu-west-1.amazonaws.com/dietzcar/static/'
+if DEBUG:
+    STATIC_URL = '/static/'
+else:
+    STATIC_URL = 'https://s3-eu-west-1.amazonaws.com/dietzcar/static/'
 
 # if not DEBUG:
 #     DEFAULT_FILE_STORAGE = 'dietzcar.carshare.s3utils.MediaS3BotoStorage'
@@ -114,5 +117,5 @@ STATIC_ROOT = '/static/'
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, '../static'),
 )
