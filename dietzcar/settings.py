@@ -22,8 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'sj2@d^=#y2(m9d%ax#fx$35r3)-mjk)@)luhd7iy$bze6dqde2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = os.environ.get('DEBUG', False)
-DEBUG = False
+
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -43,7 +43,12 @@ INSTALLED_APPS = (
     #'django.contrib.admin',
     'geoposition',
     'jquery',
-    'storages'
+    'storages',
+    #'userena',
+    'guardian',
+    'easy_thumbnails',
+    #'accounts',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,6 +60,21 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    #'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+ANONYMOUS_USER_ID = -1
+
+#AUTH_PROFILE_MODULE = 'accounts.User'
+
+LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+LOGIN_URL = '/accounts/signin/'
+LOGOUT_URL = '/accounts/signout/'
+
 ROOT_URLCONF = 'dietzcar.urls'
 
 WSGI_APPLICATION = 'dietzcar.wsgi.application'
@@ -64,6 +84,10 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, '../', "templates"),
 )
+
+REST_FRAMEWORK = {
+    'PAGINATE_BY': 10
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -101,6 +125,7 @@ else:
     AWS_STORAGE_BUCKET_NAME = 'dietzcar'
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     AWS_QUERYSTRING_AUTH = False
+
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 

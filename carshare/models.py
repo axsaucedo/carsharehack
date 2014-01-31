@@ -1,19 +1,13 @@
+# Create your models here.
 from django.db import models
 from geoposition.fields import GeopositionField
-from django.contrib.auth.models import User
-# Create your models here.
 
 
 class Driver(models.Model):
-    name = models.CharField(max_length=200)
     position = GeopositionField()
+    owner = models.ForeignKey('auth.User', related_name='drivers')
 
 
-class MyUser(User):
-    """
-    Class of the user that can sign up to the service. May be passenger or driver.
-    Inherits all from User and has extra such as position.
-    User can only be one of driver/passenger, so set is_driver flag.
-    """
+class Passenger(models.Model):
     position = GeopositionField()
-    is_driver = models.BooleanField(default=False)
+    owner = models.ForeignKey('auth.User', related_name='passengers')
