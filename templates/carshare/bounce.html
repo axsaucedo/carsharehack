@@ -1,0 +1,21 @@
+{% extends "carshare/base.html" %}
+{% load staticfiles %}
+{% block head %}
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3MGs3zSsuqIJIZk7OxelvudrGoYv_OhQ&sensor=true&region=GB">
+    </script>
+    <script type="text/javascript">
+    window.onload = function()
+    {
+        navigator.geolocation.getCurrentPosition(bounce);
+    };
+
+    function bounce(pos) {
+        loc = pos.coords;
+        window.location += '?long=' + loc.longitude + ',?lat=' + loc.latitude;
+    }
+   </script>
+{% endblock head %}
+{% block body %}
+    <div id="map-canvas"/>
+{% endblock body %}

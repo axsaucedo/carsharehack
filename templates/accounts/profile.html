@@ -1,0 +1,7 @@
+{% extends "accounts/base.html" %}
+{% block body %}
+    Hello, {{ user.first_name }} {{ user.last_name }}.<br>
+    {{ user.username }} {{ user.email }}
+    {{ user.userprofile.is_driver }}
+    {{ user.userprofile.position }}
+{% endblock body %}

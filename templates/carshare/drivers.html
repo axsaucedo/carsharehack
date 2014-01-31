@@ -1,0 +1,45 @@
+{% extends "carshare/base.html" %}
+{% load staticfiles %}
+{% block head %}
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3MGs3zSsuqIJIZk7OxelvudrGoYv_OhQ&sensor=true&region=GB">
+    </script>
+    <script type="text/javascript">
+
+    function initialize() {
+        draw_marks()
+    }
+    function draw_marks(){
+
+        var mapOptions = {
+          center: new google.maps.LatLng{{ my_loc }},
+          zoom: 14
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+    var marker_closest = "{% static 'img/marker_closest.png' %}"
+    var marker_user = "{% static 'img/marker_user.png' %}"
+    var marker = new google.maps.Marker({
+            position: new google.maps.LatLng{{ my_loc }},
+            title: "Me",
+            icon: marker_user
+        })
+        marker.setMap(map)
+        {% for driver in drivers %}
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng({{ driver.position }}),
+            title:"{{ driver.owner.username }}",
+            {% if forloop.counter0 == closest_idx %}
+            icon: marker_closest
+            {% endif %}
+
+        })
+        marker.setMap(map)
+        {% endfor %}
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+   </script>
+{% endblock head %}
+{% block body %}
+    <div id="map-canvas"/>
+{% endblock body %}
