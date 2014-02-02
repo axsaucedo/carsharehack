@@ -24,6 +24,7 @@ def get_closest(my_loc, points):
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [permissions.IsAdminUser]  # only admin can see
 
 
 class DriverViewSet(viewsets.ModelViewSet):
