@@ -45,10 +45,11 @@ INSTALLED_APPS = (
     'jquery',
     'storages',
     #'userena',
-    'guardian',
-    'easy_thumbnails',
+    #'guardian',
+    #'easy_thumbnails',
     #'accounts',
     'rest_framework',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,20 +61,20 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-AUTHENTICATION_BACKENDS = (
-    #'userena.backends.UserenaAuthenticationBackend',
-    'guardian.backends.ObjectPermissionBackend',
-    'django.contrib.auth.backends.ModelBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#     #'userena.backends.UserenaAuthenticationBackend',
+#     'guardian.backends.ObjectPermissionBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+# )
 
 
 ANONYMOUS_USER_ID = -1
 
 #AUTH_PROFILE_MODULE = 'accounts.User'
 
-LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
-LOGIN_URL = '/accounts/signin/'
-LOGOUT_URL = '/accounts/signout/'
+#LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+#LOGIN_URL = '/accounts/signin/'
+#LOGOUT_URL = '/accounts/signout/'
 
 ROOT_URLCONF = 'dietzcar.urls'
 
@@ -86,7 +87,11 @@ TEMPLATE_DIRS = (
 )
 
 REST_FRAMEWORK = {
-    'PAGINATE_BY': 10
+    'PAGINATE_BY': 10,
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+
 }
 
 # Database

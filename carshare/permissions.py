@@ -7,3 +7,26 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
         if request.method in permissions.SAFE_METHODS:
             return True
         return obj.owner == request.user
+
+
+class IsOwner(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        return obj.owner == request.user
+
+
+class PassengerPermissions(permissions.BasePermission):
+    """
+    Permissions class to handle Passenger.
+    Passenger can update their own position but not read it.
+    """
+    def has_object_permission(self, request, view, obj):
+        return (obj.owner == request.user) and (request.method == 'PATCH')
+
+
+class DriverPermissions(permissions.BasePermission):
+    """
+    Permissions class to handle Driver.
+    Driver can update their own position but not read it.
+    """
+    def has_object_permission(self, request, view, obj):
+        return (obj.owner == request.user) and (request.method == 'PATCH')
