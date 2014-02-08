@@ -15,7 +15,6 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAdminUser
 from rest_framework import mixins
 
-
 def v_dist(v1, v2):
     return sum([(a - b)**2 for a, b in zip(v1, v2)])
 
@@ -94,7 +93,6 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         dist_lam = lambda x: get_closest(x, current_driver)
         ordered_requests = sorted(qs, key=dist_lam)
         return ordered_requests
-
 
 def driver_view_requests(request):
     return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
