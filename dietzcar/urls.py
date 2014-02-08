@@ -37,6 +37,6 @@ urlpatterns += patterns('',
                         url(r'^passenger/', TemplateView.as_view(template_name='carshare/passenger.html')),
                         url(r'^driver/', TemplateView.as_view(template_name='carshare/driver.html')),
                         url(r'^fb/', TemplateView.as_view(template_name='accounts/login.html')),
-                        url(r'^driver_view_requests/', 'carshare.views.driver_check_in', name='driver-view-requests'),
+                        url(r'^driver_view_requests/', 'carshare.views.driver_view_requests', name='driver-view-requests'),
                         )
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
