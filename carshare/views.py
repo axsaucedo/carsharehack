@@ -1,6 +1,8 @@
 import decimal
+from django.shortcuts import render
 from carshare.models import Driver, Passenger, ActiveRequest
-from carshare.permissions import IsOwnerOrReadOnly, IsOwner, PassengerPermissions, DriverPermissions
+from carshare.permissions import IsOwnerOrReadOnly, IsOwner, PassengerPermissions,  \
+    DriverCheckInPermissions
 from carshare.serializers import UserSerializer, DriverSerializer, PassengerSerializer, GeopositionFieldSerializer, \
     ValidRequestSerializer
 from django.contrib.auth.models import User
@@ -77,7 +79,7 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
     """
     model = ActiveRequest
     serializer_class = ValidRequestSerializer
-    permission_classes = [permissions.IsAuthenticated, DriverPermissions]
+    permission_classes = [permissions.IsAuthenticated, DriverCheckInPermissions]
     paginate_by = 10
 
     def get_queryset(self):
@@ -90,3 +92,20 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         ordered_requests = sorted(qs, key=dist_lam)
         return ordered_requests
 
+# from forms import PassengerRequestForm
+# from django.contrib.auth import login
+# from django.http import HttpResponseRedirect
+#
+#
+# def add_request(request):
+#     if request.method == "POST":
+#         form = PassengerRequestForm(request.POST)
+#         if form.is_valid():
+#             new_user = User.objects.create_user(**form.cleaned_data)
+#             login(new_user)
+#             # redirect, or however you want to get to the main view
+#             return HttpResponseRedirect('main.html')
+#     else:
+#         form = PassengerRequestForm()
+#
+#     return render(request, 'carshare/add_request.html', {'form': form})

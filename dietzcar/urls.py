@@ -24,7 +24,7 @@ router.register(r'drivercheckin', DriverCheckinViewSet)
 #router.register(r'users', UserViewSet)
 
 urlpatterns += patterns('',
-    url(r'^api/', include(router.urls)),
+    url(r'^api/?', include(router.urls)),
     #url(r'^api/', )
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     #url(r'api/passengers/(?P<pk>)', UpdatePassengerPositionDetailView.as_view(), name='passenger-detail'),

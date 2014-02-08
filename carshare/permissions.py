@@ -19,16 +19,29 @@ class PassengerPermissions(permissions.BasePermission):
     Permissions class to handle Passenger.
     Passenger can update their own position but not read it.
     """
+    def has_permission(self, request, view):
+        return request.method == 'PATCH'
+
+    def has_object_permission(self, request, view, obj):
+        return obj.owner == request.user
+
+
+class DriverCheckInPermissions(permissions.BasePermission):
+    """
+    Permissions class to handle Driver check in.
+    Driver can read the list of requests near them.
+    """
+    def has_permission(self, request, view):
+        return request.method in permissions.SAFE_METHODS
+
+    def has_object_permission(self, request, view, obj):
+        return obj.owner == request.user
+
+
+class DriverUpdatePositionPermissions(permissions.BasePermission):
+    """
+    Permissions class to handle Driver updating position.
+    Driver can write their position but not read.
+    """
     def has_object_permission(self, request, view, obj):
         return (obj.owner == request.user) and (request.method == 'PATCH')
-
-
-class DriverPermissions(permissions.BasePermission):
-    """
-    Permissions class to handle Driver.
-    Driver can update their own position but not read it.
-    TODO: Driver can read the list of requests near them.
-    """
-    def has_object_permission(self, request, view, obj):
-        return (obj.owner == request.user) and (request.method == 'PATCH')
-
