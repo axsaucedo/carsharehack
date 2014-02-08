@@ -1,6 +1,7 @@
 Django==1.6.1
 Pillow==2.3.0
 South==0.8.4
+Unidecode==0.04.14
 argparse==1.2.1
 boto==2.23.0
 dj-database-url==0.2.2
@@ -15,8 +16,16 @@ djangorestframework==2.3.12
 easy-thumbnails==1.4
 gunicorn==18.0
 html2text==3.200.3
+httplib2==0.8
+oauth2==1.5.211
+oauthlib==0.6.1
 psycopg2==2.5.2
 pystache==0.5.3
+python-openid==2.2.5
+python-social-auth==0.1.20
+requests==2.2.1
+requests-oauthlib==0.4.0
 six==1.5.2
+sorl-thumbnail==11.12
 static==1.0.2
 wsgiref==0.1.2

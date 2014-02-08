@@ -29,7 +29,7 @@
       <file leaf-file-name="settings.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dietzcar/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="190" column="3" selection-start="5180" selection-end="5180" vertical-scroll-proportion="0.88105726" vertical-offset="2584" max-vertical-offset="3492">
+            <state line="173" column="0" selection-start="4755" selection-end="4755" vertical-scroll-proportion="0.8697183" vertical-offset="2620" max-vertical-offset="3528">
               <folding />
             </state>
           </provider>
@@ -471,7 +471,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36363637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36363637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -714,7 +714,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dietzcar/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="3" selection-start="5180" selection-end="5180" vertical-scroll-proportion="0.88105726" vertical-offset="2584" max-vertical-offset="3492">
+        <state line="173" column="0" selection-start="4755" selection-end="4755" vertical-scroll-proportion="0.8697183" vertical-offset="2620" max-vertical-offset="3528">
           <folding />
         </state>
       </provider>
