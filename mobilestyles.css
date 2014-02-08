@@ -1,0 +1,33 @@
+body
+{
+	
+	/*background:#EF9908;*/
+	}
+body, html
+{
+	padding:0px;
+	height:100%;
+	margin:0px;
+	}
+.content
+{
+	background:#000;
+	height:100%;
+	float:left;
+	width:70%;
+	}
+.navbar_left
+{
+	height:100%;
+	width:15%;	
+	background:#EF9908;
+	float:left;
+	}
+.navbar_right
+{
+	height:100%;
+	width:15%;
+	background:#EF9908;
+	float:right;
+	}
+	/* #EF9908 taxi cab yellow */

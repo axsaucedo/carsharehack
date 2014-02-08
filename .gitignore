@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 venv-carsharehack
 carsharehack
+=======
+venv-dietzcar
+carsharehack
+*.iml
+.idea
+>>>>>>> 96701a5d7abae5ceacf32441de40593896e85886
 *.pyc
 static
