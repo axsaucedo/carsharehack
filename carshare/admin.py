@@ -1,4 +1,4 @@
-from carshare.models import Driver, Passenger, UserProfile, ActiveRequests
+from carshare.models import Driver, Passenger, UserProfile, ActiveRequest
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
@@ -25,9 +25,12 @@ class UserProfileAdmin(UserAdmin):
     list_display = ('username', 'first_name', 'last_name', 'email',)
 
 
+class ActiveRequestAdmin(admin.ModelAdmin):
+    #inlines = [ActiveRequestInline]
+    list_display = ('request_time', 'passenger_id', 'position', 'destination', 'num_passengers')
 
 admin.site.register(User, UserProfileAdmin)
 
 admin.site.register(Driver, DriverAdmin)
 admin.site.register(Passenger, PassengerAdmin)
-admin.site.register(ActiveRequests)
+admin.site.register(ActiveRequest, ActiveRequestAdmin)

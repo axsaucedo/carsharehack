@@ -1,5 +1,5 @@
 import decimal
-from carshare.models import Driver, Passenger, ActiveRequests
+from carshare.models import Driver, Passenger, ActiveRequest
 from django.contrib.auth.models import User
 from geoposition import Geoposition
 from rest_framework import serializers
@@ -44,16 +44,15 @@ class PassengerSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('position', )
 
 
-class ValidRequestSerializer(serializers.HyperlinkedModelSerializer):
+class ValidRequestSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ActiveRequests
-        fields = ('passenger_id', 'passenger_position', 'passenger_destination', 'request_time', 'num_passengers')
+        model = ActiveRequest
+        fields = ('passenger_id', 'position', 'destination', 'request_time', 'num_passengers')
 
 
-class DriverCheckInSerializer(serializers.HyperlinkedModelSerializer):
-    position = GeopositionFieldSerializer(source="position", )
-    valid_requests = ValidRequestSerializer(source="validrequests", )
-
-    class Meta:
-        model = ActiveRequests
-        fields = ('position', 'validrequests')
+# class DriverCheckInSerializer(serializers.HyperlinkedModelSerializer):
+#     #valid_requests = ValidRequestSerializer(source='valid_requests')
+#
+#     class Meta:
+#         model = ActiveRequest
+#         fields = ('valid_requests', )

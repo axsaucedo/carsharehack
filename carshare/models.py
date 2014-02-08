@@ -13,14 +13,14 @@ class Driver(models.Model):
 
 
 class Passenger(models.Model):
-    position = GeopositionField()
+    position = GeopositionField()  # might not be necessary
     owner = models.ForeignKey('auth.User', related_name='passengers', default=1, null=False)
 
 
-class ActiveRequests(models.Model):
-    passenger_id = models.ForeignKey('Passenger', related_name='passenger')
-    passenger_position = GeopositionField()
-    passenger_destination = GeopositionField()
+class ActiveRequest(models.Model):
+    passenger_id = models.ForeignKey('auth.User')
+    position = GeopositionField()
+    destination = GeopositionField()
     request_time = DateTimeField(auto_now=True)
     num_passengers = IntegerField(default=1)
 
