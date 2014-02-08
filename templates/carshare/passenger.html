@@ -1,0 +1,90 @@
+{% extends "carshare/base.html" %}
+
+{% block head-includes %}
+    <script src="http://api.mygeoposition.com/api/geopicker/api.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/passenger.css">
+    <script type="text/javascript" src="/static/js/passenger.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <h1 class="page-header">Get a ride</h1>
+                </div>
+                <h1>You can get a ride now!</h1>
+
+                <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+                <article>
+                    <h4 style="color: white">Finding your location: <span id="status">checking...</span></h4>
+                </article>
+            </div>
+            <div class="col-md-6">
+                <div id="passenger-form-container" class="well">
+                    <form id="passenger-form" class="form-horizontal" method="POST">
+                        {% csrf_token %}
+                        <fieldset style="border: none;">
+                            <legend>Please fill in all the required fields.</legend>
+
+                            <div class="form-group">
+                                <fieldset>
+                                    <legend>To select your destination, click <button id="find-location-button" class="btn btn-danger" type="button">here</button></legend>
+
+                                    {% if debug %}<div class="alert alert-dismissable alert-info">Debug is on, so latitude and longitude are displayed (To disable debug, go to settings.py)</div>{% endif %}
+
+                                    <input id="passenger-form-curr-lat" name="currlat" {% if not debug %}class="hidden"{% endif %} type="text">
+                                    <input id="passenger-form-curr-long" name="currlong" {% if not debug %}class="hidden"{% endif %} type="text">
+
+                                    <input id="passenger-form-dest-lat" name="destlat" {% if not debug %}class="hidden"{% endif %} type="text">
+                                    <input id="passenger-form-dest-long" name="destlong" {% if not debug %}class="hidden"{% endif %} type="text">
+
+                                    <div class="form-group">
+                                        <label for="passenger-form-address" class="col-md-3 control-label">Address</label>
+                                        <div class="col-md-9">
+                                            <input id="passenger-form-address" class="form-control" name="address" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="passenger-form-country" class="col-md-3 control-label">Country</label>
+                                        <div class="col-md-9">
+                                            <input id="passenger-form-country" name="country" class="form-control" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="passenger-form-city" class="col-md-3 control-label">City</label>
+                                        <div class="col-md-9">
+                                            <input id="passenger-form-city" name="city" class="form-control" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="passenger-form-zip" class="col-md-3 control-label">Zip Code</label>
+                                        <div class="col-md-9">
+                                            <input id="passenger-form-zip" name="zip" class="form-control" type="text" readonly>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="passenger-form-price" class="col-md-3 control-label">Price</label>
+                                <div class="col-md-9" style="padding-bottom: 20px;">
+                                    <input id="passenger-form-website" name="website" class="form-control" type="text" placeholder="Required">
+                                </div>
+                            </div>
+
+                        </fieldset>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-lg-offset-2">
+                                <button id="passenger-submit-btn" type="submit" class="btn btn-primary">Create</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
