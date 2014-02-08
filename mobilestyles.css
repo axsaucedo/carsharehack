@@ -9,25 +9,45 @@ body, html
 	height:100%;
 	margin:0px;
 	}
+div .buttons
+{
+	margin:10px auto;
+	width:30%;
+	}
+#sign_in_button
+{
+	width:100%;
+	}
+#sign_up_button
+{
+	width:100%;
+	}
+div .signin
+{
+	visibility:hidden;
+	margin:10px auto;
+	
+	}
+	
+div .signup
+{
+	visibility:hidden;
+	margin:10px auto;
+	}
 .content
 {
-	background:#000;
+	background:#496e91;
 	height:100%;
-	float:left;
-	width:70%;
-	}
-.navbar_left
-{
-	height:100%;
-	width:15%;	
-	background:#EF9908;
-	float:left;
-	}
-.navbar_right
-{
-	height:100%;
-	width:15%;
-	background:#EF9908;
 	float:right;
+	width:100%;
 	}
+.navbar
+{
+	height:10%;
+	width:100%;	
+	background:#EF9908;
+	float:left;
+	visibility:hidden;
+	}
+
 	/* #EF9908 taxi cab yellow */
