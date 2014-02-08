@@ -96,8 +96,8 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         return ordered_requests
 
 
-def driver_check_in(request):
-    return HttpResponseRedirect(reverse('activerequest-list'))
+def driver_view_requests(request):
+    return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
 
 
 
