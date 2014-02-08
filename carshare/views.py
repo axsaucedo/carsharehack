@@ -1,6 +1,10 @@
 import decimal
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from rest_framework.reverse import reverse
 from carshare.models import Driver, Passenger, ActiveRequest
-from carshare.permissions import IsOwnerOrReadOnly, IsOwner, PassengerPermissions, DriverPermissions
+from carshare.permissions import IsOwnerOrReadOnly, IsOwner, PassengerPermissions,  \
+    DriverCheckInPermissions
 from carshare.serializers import UserSerializer, DriverSerializer, PassengerSerializer, GeopositionFieldSerializer, \
     ValidRequestSerializer
 from django.contrib.auth.models import User
@@ -70,23 +74,47 @@ class PassengerViewSet(viewsets.ModelViewSet):
 #         ordered_drivers = sorted(qs, key=dist_lam)
 #         return ordered_drivers
 
-
+from django.core.urlresolvers import get_resolver
 class DriverCheckinViewSet(viewsets.ModelViewSet):
     """
     Whenever a driver checks in, they also create a view with any valid travel requests.
     """
     model = ActiveRequest
     serializer_class = ValidRequestSerializer
-    permission_classes = [permissions.IsAuthenticated, DriverPermissions]
+    permission_classes = [permissions.IsAuthenticated, DriverCheckInPermissions]
     paginate_by = 10
 
     def get_queryset(self):
         """
         Queryset is the requests located near them.
         """
+        print(get_resolver(None).reverse_dict.keys())
         qs = ActiveRequest.objects.all()
         current_driver = Driver.objects.get(owner__id=self.request.user.id)
         dist_lam = lambda x: get_closest(x, current_driver)
         ordered_requests = sorted(qs, key=dist_lam)
         return ordered_requests
 
+
+def driver_check_in(request):
+    return HttpResponseRedirect(reverse('activerequest-list'))
+
+
+
+# from forms import PassengerRequestForm
+# from django.contrib.auth import login
+# from django.http import HttpResponseRedirect
+#
+#
+# def add_request(request):
+#     if request.method == "POST":
+#         form = PassengerRequestForm(request.POST)
+#         if form.is_valid():
+#             new_user = User.objects.create_user(**form.cleaned_data)
+#             login(new_user)
+#             # redirect, or however you want to get to the main view
+#             return HttpResponseRedirect('main.html')
+#     else:
+#         form = PassengerRequestForm()
+#
+#     return render(request, 'carshare/add_request.html', {'form': form})
