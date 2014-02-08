@@ -23,18 +23,23 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class DriverSerializer(serializers.HyperlinkedModelSerializer):
-    position = GeopositionFieldSerializer(source="position", write_only=True)
-    owner = serializers.HyperlinkedRelatedField(view_name='user-detail', read_only=True)
+    position = GeopositionFieldSerializer(source="position")
+    #owner = serializers.HyperlinkedRelatedField(view_name='user-detail', read_only=True)
+    username = serializers.RelatedField(source='owner.username', read_only=True)
+    email = serializers.RelatedField(source='owner.email')
+    first_name = serializers.RelatedField(source='owner.first_name')
+    last_name = serializers.RelatedField(source='owner.last_name')
 
     class Meta:
         model = Driver
-        fields = ('url', 'owner', 'position')
+        fields = ('position', 'username', 'email', 'first_name', 'last_name')
 
 
 class PassengerSerializer(serializers.HyperlinkedModelSerializer):
-    position = GeopositionFieldSerializer(source="position", write_only=True)
-    owner = serializers.HyperlinkedRelatedField(view_name='user-detail', read_only=True)
+    position = GeopositionFieldSerializer(source="position", )
+    #owner = serializers.HyperlinkedRelatedField(view_name='user-detail', read_only=True)
 
     class Meta:
         model = Passenger
-        fields = ('url', 'owner', 'position')
+        fields = ('position', )
+

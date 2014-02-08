@@ -23,7 +23,7 @@ SECRET_KEY = 'sj2@d^=#y2(m9d%ax#fx$35r3)-mjk)@)luhd7iy$bze6dqde2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 TEMPLATE_DEBUG = True
 
@@ -50,6 +50,8 @@ INSTALLED_APPS = (
     #'accounts',
     'rest_framework',
     'south',
+    'social.apps.django_app.default',
+    'sorl',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,20 +63,55 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-# AUTHENTICATION_BACKENDS = (
-#     #'userena.backends.UserenaAuthenticationBackend',
-#     'guardian.backends.ObjectPermissionBackend',
-#     'django.contrib.auth.backends.ModelBackend',
-# )
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    #'userena.backends.UserenaAuthenticationBackend',
+    #'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.social_auth.associate_by_email',
+    'social.pipeline.user.get_username',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+    'auth_pipelines.pipelines.get_profile_data',  # custom
+    'auth_pipelines.pipelines.get_profile_avatar',  # custom
+)
 
 
 ANONYMOUS_USER_ID = -1
 
-#AUTH_PROFILE_MODULE = 'accounts.User'
+AUTH_PROFILE_MODULE = 'carshare.UserProfile'
 
-#LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
-#LOGIN_URL = '/accounts/signin/'
-#LOGOUT_URL = '/accounts/signout/'
+# LOGIN_URL          = '/login-form/'
+# LOGIN_REDIRECT_URL = '/logged-in/'
+# LOGIN_ERROR_URL    = '/login-error/'
+
+
+# SOCIAL_AUTH_COMPLETE_URL_NAME  = 'socialauth_complete'
+# SOCIAL_AUTH_ASSOCIATE_URL_NAME = 'socialauth_associate_complete'
+
+
+
+SOCIAL_AUTH_FACEBOOK_KEY              = '414725015296995'
+SOCIAL_AUTH_FACEBOOK_SECRET          = '31d1e1884b2c115fa5db73768c09186c'
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
+)
 
 ROOT_URLCONF = 'dietzcar.urls'
 
@@ -90,6 +127,7 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 10,
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.DjangoModelPermissions',
     ),
 
 }
@@ -119,8 +157,11 @@ USE_TZ = True
 
 STATIC_ROOT = 'carshare/static/'
 
+MEDIA_ROOT = 'media/'
+
 if DEBUG:
     STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
 else:
     #STATIC_URL = 'https://s3-eu-west-1.amazonaws.com/dietzcar/static/'
     STATIC_URL = 'https://dietzcar.s3.amazonaws.com/'
