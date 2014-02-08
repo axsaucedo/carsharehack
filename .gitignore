@@ -1,3 +1,6 @@
 venv-dietzcar
+carsharehack
+*.iml
+.idea
 *.pyc
 static
