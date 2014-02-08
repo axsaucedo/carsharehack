@@ -1,4 +1,4 @@
-from carshare.models import Driver, Passenger, UserProfile
+from carshare.models import Driver, Passenger, UserProfile, ActiveRequests
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
@@ -30,3 +30,4 @@ admin.site.register(User, UserProfileAdmin)
 
 admin.site.register(Driver, DriverAdmin)
 admin.site.register(Passenger, PassengerAdmin)
+admin.site.register(ActiveRequests)

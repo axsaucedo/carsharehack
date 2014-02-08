@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from carshare.views import PassengerViewSet
+from carshare.views import PassengerViewSet, DriverCheckinViewSet
 from django.contrib.auth.decorators import login_required
 from carshare.views import DriverViewSet, UserViewSet
 from django.views.generic import TemplateView
@@ -19,8 +19,7 @@ urlpatterns = patterns('',
 
 router = DefaultRouter()
 router.register(r'drivers', DriverViewSet)
-#router.register(r'users', UserViewSet)
-#router.register(r'passengers', PassengerViewSet)
+router.register(r'drivercheckin', DriverCheckinViewSet)
 
 urlpatterns += patterns('',
     url(r'^api/', include(router.urls)),
