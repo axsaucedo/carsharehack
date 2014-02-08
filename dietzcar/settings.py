@@ -27,6 +27,8 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+APPEND_SLASH = True
+
 #ALLOWED_HOSTS = []
 
 
