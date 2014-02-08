@@ -1,6 +1,7 @@
 # Create your models here.
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import DateTimeField, IntegerField
 from geoposition.fields import GeopositionField
 from django_extensions.db import fields as extensions
 from sorl.thumbnail import ImageField
@@ -15,6 +16,13 @@ class Passenger(models.Model):
     position = GeopositionField()
     owner = models.ForeignKey('auth.User', related_name='passengers', default=1, null=False)
 
+
+class ActiveRequests(models.Model):
+    passenger_id = models.ForeignKey('Passenger', related_name='passenger')
+    passenger_position = GeopositionField()
+    passenger_destination = GeopositionField()
+    request_time = DateTimeField(auto_now=True)
+    num_passengers = IntegerField(default=1)
 
 
 class UserProfile(models.Model):
