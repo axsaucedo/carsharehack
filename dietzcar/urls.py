@@ -32,7 +32,7 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('',
-                        url(r'login/', include('social.apps.django_app.urls', namespace='social')),
+                        url(r'', include('social.apps.django_app.urls', namespace='social')),
                         url(r'^/', TemplateView.as_view(template_name='carshare/home.html')),
                         url(r'^passenger/', TemplateView.as_view(template_name='carshare/passenger.html')),
                         url(r'^driver/', TemplateView.as_view(template_name='carshare/driver.html')),
