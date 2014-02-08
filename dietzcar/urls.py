@@ -32,7 +32,7 @@ urlpatterns += patterns('',
 
 urlpatterns += patterns('',
                         #url(r'', include('social.apps.django_app.urls', namespace='social')),
-                        url(r'', TemplateView.as_view(template_name='index.html')),
+                        url(r'', TemplateView.as_view(template_name='carshare/home.html')),
                         url(r'^fb/', TemplateView.as_view(template_name='accounts/login.html')),
                         )
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
