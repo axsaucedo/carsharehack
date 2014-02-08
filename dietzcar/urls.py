@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
+from rest_framework.reverse import reverse, reverse_lazy
 from carshare.views import PassengerViewSet, DriverCheckinViewSet
 #from django.contrib.auth.decorators import login_required
 #from carshare.views import DriverViewSet, UserViewSet
@@ -20,11 +21,11 @@ urlpatterns = patterns('',
 router = DefaultRouter()
 #router.register(r'drivers', DriverViewSet)
 router.register(r'passengers', PassengerViewSet)
-router.register(r'drivercheckin', DriverCheckinViewSet)
+router.register(r'drivers', DriverCheckinViewSet)
 #router.register(r'users', UserViewSet)
 
 urlpatterns += patterns('',
-    url(r'^api/?', include(router.urls)),
+    url(r'^api/', include(router.urls)),
     #url(r'^api/', )
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     #url(r'api/passengers/(?P<pk>)', UpdatePassengerPositionDetailView.as_view(), name='passenger-detail'),
@@ -36,5 +37,6 @@ urlpatterns += patterns('',
                         url(r'^passenger/', TemplateView.as_view(template_name='carshare/passenger.html')),
                         url(r'^driver/', TemplateView.as_view(template_name='carshare/driver.html')),
                         url(r'^fb/', TemplateView.as_view(template_name='accounts/login.html')),
+                        url(r'^driver_view_requests/', 'carshare.views.driver_check_in', name='driver-view-requests'),
                         )
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
