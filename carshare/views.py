@@ -1,4 +1,5 @@
 import decimal
+import json
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from rest_framework.reverse import reverse
@@ -74,7 +75,6 @@ class PassengerViewSet(viewsets.ModelViewSet):
 #         ordered_drivers = sorted(qs, key=dist_lam)
 #         return ordered_drivers
 
-from django.core.urlresolvers import get_resolver
 class DriverCheckinViewSet(viewsets.ModelViewSet):
     """
     Whenever a driver checks in, they also create a view with any valid travel requests.
@@ -88,7 +88,6 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         """
         Queryset is the requests located near them.
         """
-        print(get_resolver(None).reverse_dict.keys())
         qs = ActiveRequest.objects.all()
         current_driver = Driver.objects.get(owner__id=self.request.user.id)
         dist_lam = lambda x: get_closest(x, current_driver)
@@ -97,6 +96,11 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
 
 
 def driver_view_requests(request):
+    return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
+
+
+def passenger_post_request(request):
+    #return HttpResponse(json.dumps(response_data), content_type="application/json")
     return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
 
 
