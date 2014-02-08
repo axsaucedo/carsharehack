@@ -1,9 +1,10 @@
 import decimal
-from carshare.models import Driver, Passenger
+from carshare.models import Driver, Passenger, ActiveRequests
 from carshare.permissions import IsOwnerOrReadOnly, IsOwner, PassengerPermissions, DriverPermissions
-from carshare.serializers import UserSerializer, DriverSerializer, PassengerSerializer, GeopositionFieldSerializer
+from carshare.serializers import UserSerializer, DriverSerializer, PassengerSerializer, GeopositionFieldSerializer, \
+    DriverCheckInSerializer
 from django.contrib.auth.models import User
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from rest_framework import permissions
 from rest_framework import viewsets
 from rest_framework.exceptions import PermissionDenied
@@ -71,21 +72,19 @@ class DriverViewSet(viewsets.ReadOnlyModelViewSet):
         return ordered_drivers
 
 
-# class NearestDriversViewSet(ListView):
-#     model = Driver
-#     context_object_name = 'drivers'
-#     paginate_by = 10
-#
-#     def get_queryset(self):
-#         return Driver.objects.exclude(owner__id=self.request.user.id)
-#
-#     def get_context_data(self, **kwargs):
-#         current_passenger = Passenger.objects.get(owner__id=self.request.user.id)  # find the passenger
-#         ctx = super(NearestDriversViewSet, self).get_context_data(**kwargs)
-#         pos = current_passenger.position
-#         my_loc = (decimal.Decimal(pos.latitude), decimal.Decimal(pos.longitude))
-#         points = [(decimal.Decimal(d.position.latitude),
-#                    decimal.Decimal(d.position.longitude)) for d in self.object_list]
-#         ctx['closest_idx'] = get_closest(my_loc, points)
-#         ctx['my_loc'] = (float(pos.latitude), float(pos.longitude))  # formatted nicely
-#         return ctx
+class DriverCheckinViewSet(viewsets.ModelViewSet):
+    """
+    Whenever a driver checks in, they also create a view with any valid travel requests.
+    """
+    model = ActiveRequests
+    serializer_class = DriverCheckInSerializer
+    permission_classes = [permissions.IsAuthenticated, DriverPermissions]
+
+    def get_queryset(self):
+        """
+        Queryset is the requests located near them.
+        """
+        qs = ActiveRequests.objects.all()
+        # for now return all requests
+        return qs
+
