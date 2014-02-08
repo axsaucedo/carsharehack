@@ -60,14 +60,6 @@
                     </li>
                 {% endif %}
             </ul>
-            <form id="nav-search-form" class="navbar-form navbar-right" method="POST" action="/find/" role="search">
-                {% csrf_token %}
-                <input id="nav-find-event-tags" class="form-control hidden" type="text" name="tags">
-                <div id="nav-find-events-bar" class="col-md-10">
-                    <ul id="nav-find-event-search" style="border-radius: 5px; padding: 5px 10px 5px 10px;" data-name="nameOfSelect"></ul>
-                </div>
-                <button id="nav-find-event-search-btn" type="submit" class="btn btn-default col-md-2">Find</button>
-            </form>
             <ul class="nav navbar-nav navbar-right">
                 {% if request.user.is_authenticated %}
                     <li><a href="/find">Find Driver</a></li>
