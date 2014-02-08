@@ -27,6 +27,8 @@ class DriverPermissions(permissions.BasePermission):
     """
     Permissions class to handle Driver.
     Driver can update their own position but not read it.
+    TODO: Driver can read the list of requests near them.
     """
     def has_object_permission(self, request, view, obj):
         return (obj.owner == request.user) and (request.method == 'PATCH')
+
