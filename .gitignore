@@ -2,6 +2,7 @@ venv-carsharehack
 carsharehack
 venv-dietzcar
 carsharehack
+db.sqlite3
 *.iml
 .idea
 *.pyc
