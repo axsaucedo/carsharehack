@@ -107,7 +107,9 @@ class PassengerAddRequestViewSet(viewsets.ModelViewSet):
 
 
 def driver_view_requests(request):
-    return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
+    #return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
+    return render_to_response(reverse('activerequest-list') + '?format=json', context_instance=RequestContext(request))
+
 
 
 def passenger_post_request(request):
