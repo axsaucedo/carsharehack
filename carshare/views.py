@@ -167,5 +167,29 @@ def logout_view(request):
 
 @require_POST
 def driver_accept_request(request):
+    """
+    The driver has accepted an active request.
+    Find active request and set it to in progress
+    """
     if request.method == 'POST':
-        data = json.loads(request.raw_post_data)
+        data = json.loads(request.raw_post_data)  # a dict of json stuff
+        active_request_id = data['activerequestid']
+        this_request = ActiveRequest.objects.get(id=active_request_id)
+        this_request.inprogress = True
+        this_request.save()
+
+
+@require_POST
+def passenger_accept_driver(request):
+    """
+    The passenger has accepted a driver.
+    Find active request and set it to successful
+    """
+    if request.method == 'POST':
+        data = json.loads(request.raw_post_data)  # a dict of json stuff
+        active_request_id = data['activerequestid']
+        this_request = ActiveRequest.objects.get(id=active_request_id)
+        this_request.successful = True
+        this_request.inprogress = False
+        this_request.save()
+
