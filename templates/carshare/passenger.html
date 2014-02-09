@@ -26,6 +26,9 @@
                 <br>
 
                 <div id="passenger-form-container" class="well">
+
+                    {% if not active %}
+
                     <form id="passenger-form" class="form-horizontal" method="POST">
                         {% csrf_token %}
                         <fieldset style="border: none;">
@@ -90,6 +93,12 @@
                             </div>
                         </div>
                     </form>
+
+                    {% else %}
+
+
+
+                    {% endif %}
                 </div>
             </div>
         </div>

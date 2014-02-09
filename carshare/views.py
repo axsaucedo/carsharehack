@@ -165,18 +165,27 @@ def logout_view(request):
     return HttpResponseRedirect('/')
 
 
+import json
 @require_POST
 def driver_accept_request(request):
     """
     The driver has accepted an active request.
     Find active request and set it to in progress
     """
-    if request.method == 'POST':
-        data = json.loads(request.raw_post_data)  # a dict of json stuff
-        active_request_id = data['activerequestid']
-        this_request = ActiveRequest.objects.get(id=active_request_id)
+    response = {}
+
+    try:
+        activerequestid = request.POST['activerequestid']  # a dict of json stuff
+        this_request = ActiveRequest.objects.get(id=int(activerequestid))
         this_request.inprogress = True
         this_request.save()
+
+    except e:
+        print e
+        response = { "error" :  e }
+
+    return HttpResponse(json.dumps(response), content_type="application/json")
+
 
 
 

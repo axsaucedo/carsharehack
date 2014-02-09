@@ -73,7 +73,7 @@ var driver = {
                                                         +       "</div>"
                                                         +    "</div>"
                                                         +    "<div class='col-md-4'>"
-                                                        +       "<a class='btn btn-primary'>"
+                                                        +       "<a class='btn btn-primary give-ride-btn'>"
                                                         +           "Give a Ride!"
                                                         +       "</a>"
                                                         +           "<span class='col-md-offset-1'>Donation: </span>"
@@ -166,7 +166,32 @@ var driver = {
         }
 
 
+        $(document).on('click', '.give-ride-btn', function(event) {
+            event.preventDefault();
 
+            var that = $(this);
+            var passenger = that.closest(".passenger");
+            var activerequestid = passenger.attr('data-passenger_id');
+            var url = $('#driver-site-info').attr('data-give_ride_url');
+
+            $.ajax({
+                url: url,
+                dataType: "json",
+                type: 'POST',
+                data: {
+                    activerequestid: activerequestid
+                },
+                success: function(res) {
+                    console.log(res);
+                    if (!res.error) {
+                        console.log("success:");
+
+                        passenger_container.html("");
+                        passenger_container.append("<h1>Thanks! Your driving buddy will now be waiting for you to pick him up!</h1>")
+                    }
+                }
+            });
+        });
     }
 }
 
