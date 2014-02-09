@@ -1,7 +1,44 @@
-{% extends "accounts/base.html" %}
-{% block body %}
-    Hello, {{ user.first_name }} {{ user.last_name }}.<br>
+{% extends "carshare/base.html" %}
+    {{ user.first_name }} {{ user.last_name }}.<br>
     {{ user.username }} {{ user.email }}
     {{ user.userprofile.is_driver }}
     {{ user.userprofile.position }}
-{% endblock body %}
+
+{% block head-includes %}
+    <script src="http://api.mygeoposition.com/api/geopicker/api.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/passenger.css">
+    <script type="text/javascript" src="/static/js/passenger.js"></script>
+{% endblock %}
+
+{% block content %}
+
+
+ {% if request.user.is_authenticated %}
+
+   Testing: {{ user.first_name }} {{ user.last_name }}.<br>
+   Testing: {{ user.username }} 
+   Testing: {{ user.email }}
+   Testing: {{ user.userprofile.is_driver }}
+   Testing: {{ user.userprofile.position }}
+   Testing: {{ user.profile_image }}
+    
+
+
+
+     {% else %}
+
+
+
+
+   
+                    <h1 class="page-header">Get Authenticated</h1>
+            
+                <h1>You need to login/register an account</h1>
+
+                <a href={% url "login" %}><img src="http://i.imgur.com/F46t2zQ.png"/></a>
+
+                {% endif %}
+{% endblock %}
+
+
