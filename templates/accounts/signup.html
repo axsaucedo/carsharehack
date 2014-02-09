@@ -15,7 +15,7 @@
                     <form id="add-event-form" class="form-horizontal" method="POST">
                         {% csrf_token %}
                         <fieldset style="border: none;">
-                            <legend>Please enter your details
+                            <legend>Currently only <a id=">d-location-button" class="btn btn-primary" href='{% url "social:begin" "facebook"%}?next=/passenger/'>Facebook Login</a> available</legend>
                             {% if form.errors %}
                                 <div class="alert alert-dismissable alert-danger">
                                     Your username and password didn't match. Please try again.
@@ -24,21 +24,21 @@
                             <div class="form-group">
                                 <label for="add-event-form-name" class="col-md-3 control-label">Email</label>
                                 <div class="col-md-9">
-                                    <input id="add-event-form-name" name="username" class="form-control" type="text" placeholder="user@example.com">
+                                    <input id="add-event-form-name" name="username" class="form-control" type="text" placeholder="user@example.com" readonly>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="add-event-form-description" class="col-md-3 control-label">Password</label>
                                 <div class="col-md-9" style="padding-bottom: 20px;">
-                                    <input id="add-event-form-description" name="password" class="form-control" type="password" placeholder="Password">
+                                    <input id="add-event-form-description" name="password" class="form-control" type="password" placeholder="Password" readonly>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="add-event-form-description" class="col-md-3 control-label">Repeat password</label>
                                 <div class="col-md-9" style="padding-bottom: 20px;">
-                                    <input id="add-event-form-description" name="password" class="form-control" type="password" placeholder="Repeated password">
+                                    <input id="add-event-form-description" name="password" class="form-control" type="password" placeholder="Repeated password"readonly>
                                 </div>
                             </div>
 
