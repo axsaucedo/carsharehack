@@ -100,6 +100,9 @@ class PassengerAddRequestViewSet(viewsets.ModelViewSet):
     serializer_class = ValidRequestSerializer
     permission_classes = [permissions.IsAuthenticated, PassengerAddRequestPermissions]
 
+    def get_queryset(self):
+        return ActiveRequest.objects.filter(owner__id=self.request.user.id)
+
 
 def driver_view_requests(request):
     return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
