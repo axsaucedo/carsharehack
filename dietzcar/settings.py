@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'carshare',
     #'django.contrib.admin',
     'geoposition',
@@ -54,6 +55,7 @@ INSTALLED_APPS = (
     'south',
     'social.apps.django_app.default',
     'sorl',
+    'disqus',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,6 +106,9 @@ AUTH_PROFILE_MODULE = 'carshare.UserProfile'
 
 SOCIAL_AUTH_FACEBOOK_KEY              = '414725015296995'
 SOCIAL_AUTH_FACEBOOK_SECRET          = '31d1e1884b2c115fa5db73768c09186c'
+
+DISQUS_API_KEY = '6z7keq1mHdAS68b4Rq6Z4SnwyhWHxprrjqFQtYZK0wofnCRtS4MyjfQIjUI0sT0V'
+DISQUS_WEBSITE_SHORTNAME = 'Sokar'
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
