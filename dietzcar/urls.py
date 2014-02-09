@@ -41,5 +41,6 @@ urlpatterns += patterns('',
                         url(r'^help/', TemplateView.as_view(template_name='carshare/help.html')),
                         url(r'^accounts/view/(?P<username>.+)/$', views.viewProfile, name='profile'),
                         url(r'^logout/', 'django.contrib.auth.views.logout', {'next_page': '/'}),
+                        url(r'^signup/', TemplateView.as_view(template_name='accounts/signup.html'), {'next_page': '/'}),
                         )
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
