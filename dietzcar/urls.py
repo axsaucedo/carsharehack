@@ -39,7 +39,7 @@ urlpatterns += patterns('',
                         url(r'accounts/', include('social.apps.django_app.urls', namespace='social')),
                         url(r'^login/', TemplateView.as_view(template_name='accounts/login.html'), name='login'),
                         url(r'^help/', TemplateView.as_view(template_name='carshare/help.html')),
-                        url(r'^accounts/(?P<username>.+)/$', views.viewProfile, name='profile'),
+                        url(r'^accounts/view/(?P<username>.+)/$', views.viewProfile, name='profile'),
                         url(r'^logout/', 'django.contrib.auth.views.logout', {'next_page': '/'}),
                         )
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
