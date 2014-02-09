@@ -76,19 +76,18 @@
                             <div class="form-group">
                                 <label for="passenger-form-price" class="col-md-2 control-label">Price</label>
                                 <div class="col-md-4" style="padding-bottom: 20px;">
-                                    <input id="passenger-form-price" name="price" class="form-control" type="text" placeholder="Required">
+                                    <input id="passenger-form-price" name="price" class="form-control" type="number" placeholder="Required">
                                 </div>
 
                                 <label for="passenger-form-passengers" class="col-md-2 control-label">No. Passengers</label>
                                 <div class="col-md-4" style="padding-bottom: 20px;">
-                                    <input id="passenger-form-passengers" name="passengers" class="form-control" type="number" placeholder="Required">
                                 </div>
                             </div>
 
 
                         </fieldset>
                         <div class="form-group">
-                            <div class="col-lg-10 col-lg-offset-2">
+                            <div class="col-lg-10 col-lg-offset-5">
                                 <button id="passenger-submit-btn" type="submit" class="btn btn-primary">Create</button>
                             </div>
                         </div>
@@ -112,7 +111,7 @@
                 <h1>You need to login/register an account</h1>
 
                 <a href={% url "login" %}><img src="http://i.imgur.com/F46t2zQ.png"/></a>
-      
+
                 {% endif %}
 {% endblock %}
 
