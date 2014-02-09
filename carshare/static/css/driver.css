@@ -1,0 +1,13 @@
+.passenger {
+    border-radius: 15px
+}
+
+.passenger:hover {
+    background-color: #DBDBDB ;
+
+    -webkit-transition: background-color 1000ms linear;
+    -moz-transition: background-color 1000ms linear;
+    -o-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+}
