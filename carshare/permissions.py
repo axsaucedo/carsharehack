@@ -38,10 +38,15 @@ class DriverCheckInPermissions(permissions.BasePermission):
         return obj.owner == request.user
 
 
-# class DriverUpdatePositionPermissions(permissions.BasePermission):
-#     """
-#     Permissions class to handle Driver updating position.
-#     Driver can write their position but not read.
-#     """
-#     def has_object_permission(self, request, view, obj):
-#         return (obj.owner == request.user) and (request.method == 'PATCH')
+class PassengerAddRequestPermissions(permissions.BasePermission):
+    """
+    Permissions class to handle Passenger adding request.
+    Passenger can POST request, but not GET
+    """
+
+    # def has_permission(self, request, view):
+    #     return request.method == 'POST'
+
+    # def has_object_permission(self, request, view, obj):
+    #     print(obj.owner, request.user)
+    #     return obj.owner == request.user

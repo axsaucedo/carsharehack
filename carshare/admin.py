@@ -27,7 +27,7 @@ class UserProfileAdmin(UserAdmin):
 
 class ActiveRequestAdmin(admin.ModelAdmin):
     #inlines = [ActiveRequestInline]
-    list_display = ('request_time', 'passenger_id', 'position', 'destination', 'num_passengers')
+    list_display = ('request_time', 'id', 'position', 'destination', 'num_passengers')
 
 admin.site.register(User, UserProfileAdmin)
 
