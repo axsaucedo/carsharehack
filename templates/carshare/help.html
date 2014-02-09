@@ -6,18 +6,18 @@
 {% endblock %}
 
 {% block content %}
-    <div id="so-kar-title">Join Us</div>
+    <div id="so-kar-title">Sokar</div>
 
 
     <div class="bs-example col-md-5 col-md-offset-1">
         <ul id="home-tabs" class="nav nav-tabs" style="margin-bottom: 15px;">
-            <li class="active"><a href="#home-tab-1" data-toggle="tab" style="color:black">Why Join Us?</a></li>
-            <li class=""><a href="#home-tab-2" data-toggle="tab" style="color:black">Want a ride?</a></li>
-            <li class=""><a href="#home-tab-3" data-toggle="tab" style="color:black">Join now!</a></li>
+            <li class="active"><a href="#home-tab-1" data-toggle="tab" style="color:black">Making an Account?</a></li>
+            <li class=""><a href="#home-tab-2" data-toggle="tab" style="color:black">Contact 24/7 Live Support</a></li>
+            <li class=""><a href="#home-tab-3" data-toggle="tab" style="color:black">Report a Bug</a></li>
         </ul>
         <div id="home-tabbed-content" class="tab-content" style="height: 180px; position: relative; background-color: rgba(0, 0, 0, 0.6); padding: 20px 20px 20px 20px; color: white; border-radius: 15px;">
             <div class="tab-pane fade active in" id="home-tab-1">
-                <p>If your going from A to B, Why dont you help the Enviroment and Car Share. You will be saving the ice caps. Sometimes all's it takes is one person to start a chain of events.</p>
+                <p>If you are having problems making an account please clear your internet history and cache, The please click login with facebook. If you do not have facebook please email tech support: techsupport@boselecta.com</p>
                  {% if request.user.is_authenticated %}
                 <button class="btn btn-danger" onclick="location.href='/driver';">Earn Money!</button>
                 {% else %}
@@ -25,7 +25,7 @@
                 {% endif %}
             </div>
             <div class="tab-pane fade" id="home-tab-2">
-                <p>You can find the best events in your area, sort them by popularity, see who is already attending, and even contact the organizers to get more information about the event!</p>
+                <p>Live Support: </p>
                 <button class="btn btn-danger bottom" onclick="location.href='/home';">Find a ride!</button>
             </div>
             <div class="tab-pane fade" id="home-tab-3">
@@ -34,5 +34,7 @@
             </div>
         </div>
     </div>
-     <p style="float:left; padding-top: 15px; padding-right: 50px" class="text-muted credit">Copyright &copy; 2013 Sokar.</p>
+   
+
+
 {% endblock %}
