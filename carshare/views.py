@@ -135,7 +135,7 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         lat = self.request.GET.get("latitude", "")
         long = self.request.GET.get("longitude", "")
 
-        qs = ActiveRequest.objects.filter(inprogress=False).filter(active=True)
+        qs = ActiveRequest.objects.filter(inprogress=False).filter(active=True).filter(successful=False)
         current_driver = Driver.objects.get(owner__id=self.request.user.id)
         current_driver.position = Geoposition(lat, long)
         current_driver.save()
