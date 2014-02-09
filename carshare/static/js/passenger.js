@@ -4,7 +4,7 @@ var passenger = {
         $("#find-location-button").bind("click", function lookupGeoData() {
             console.log("here");
             myGeoPositionGeoPicker({
-                startAddress     : 'White House, Washington',
+                startAddress     : 'University of Manchester, Manchester, UK',//'White House, Washington',
                 returnFieldMap   : {
                     'passenger-form-dest-lat' : '<LAT>',
                     'passenger-form-dest-long' : '<LNG>',
