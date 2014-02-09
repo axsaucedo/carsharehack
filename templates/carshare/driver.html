@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <div id="driver-site-info" {% if activerequest %}data-no_activerequest="true"{% endif %} data-give_ride_url={% url 'give-ride' %} data-get_passengers="http://localhost:8000/api/drivers/?format=json"></div>
+    <div id="driver-site-info" {% if not activerequest %}data-no_activerequest="true"{% endif %} data-give_ride_url={% url 'give-ride' %} data-get_passengers="http://localhost:8000/api/drivers/?format=json"></div>
 
     <div class="container">
         <div class="row">

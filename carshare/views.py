@@ -85,6 +85,7 @@ class PassengerViewSet(viewsets.ModelViewSet):
 def passengerRequest(request):
 
     active = ActiveRequest.objects.filter(owner=request.user, active=True)
+    print  active
 
     if request.method == "POST":
         try:
@@ -110,7 +111,7 @@ def passengerRequest(request):
 
                 ar.save()
 
-                active = True
+                active = ar
 
         except:
             pass
@@ -176,8 +177,12 @@ def driver_accept_request(request):
     The driver has accepted an active request.
     Find active request and set it to in progress
     """
+    activerequest = None
 
-    activerequest = ActiveRequest.objects.get(driver=request.user, inprogress=True)
+    try:
+        activerequest = ActiveRequest.objects.get(driver=request.user, inprogress=True)
+    except ActiveRequest.DoesNotExist:
+        pass
 
     if request.method == "POST" and not activerequest:
         response = {}
@@ -194,6 +199,8 @@ def driver_accept_request(request):
             response = { "error" :  e }
 
         return HttpResponse(json.dumps(response), content_type="application/json")
+
+    print activerequest
 
     return render(request, 'carshare/driver.html', { 'activerequest' : activerequest })
 

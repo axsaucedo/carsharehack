@@ -1,3 +1,9 @@
+#passengers-container {
+    height: 540px;
+    margin-top: 10px;
+    overflow-y: scroll;
+}
+
 .passenger {
     border-radius: 15px
 }
@@ -10,7 +16,4 @@
     -o-transition: background-color 1000ms linear;
     -ms-transition: background-color 1000ms linear;
     transition: background-color 1000ms linear;
-}
-.navbar-default .navbar-brand {
-color: #F00;
 }
