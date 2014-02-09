@@ -8,15 +8,21 @@
 {% endblock %}
 
 {% block content %}
-    <div id="driver-site-info" data-get_passengers="{% url 'driver-view-requests' %}"></div>
+    <div id="driver-site-info" data-get_passengers={% url 'driver-view-requests' %}></div>
 
     <div class="container">
         <div class="row">
+            <form id="driver-form" class="hidden" action={% url 'test_ajax' %} method="post">
+                {% csrf_token %}
+                <input id="driver-form-lat" name="lat" {% if not debug %}class="hidden"{% endif %} type="text">
+                <input id="driver-form-long" name="long" {% if not debug %}class="hidden"{% endif %} type="text">
+            </form>
+
             <div class="col-md-6">
                 <div class="row">
-                    <h1 class="page-header">Get a ride</h1>
+                    <h1 class="page-header">Pick up a dude!!</h1>
                 </div>
-                <h1>You can get a ride now!</h1>
+                <h1>GOPICKUPADUDENAO!!</h1>
 
                 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
                 <article>

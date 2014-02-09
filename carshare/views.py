@@ -96,7 +96,6 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         ordered_requests = sorted(qs, key=dist_lam)
         return ordered_requests
 
-
 class PassengerAddRequestViewSet(viewsets.ModelViewSet):
     model = ActiveRequest
     serializer_class = ValidRequestSerializer
@@ -110,7 +109,13 @@ def driver_view_requests(request):
     #return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
     return render_to_response(reverse('activerequest-list') + '?format=json', context_instance=RequestContext(request))
 
+import json
+from django.views.decorators.http import require_POST
+def test_ajax(request):
+    response = { "worked" : "yes!"}
 
+    return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
+#    return HttpResponse(json.dumps(response), content_type="application/json")
 
 def passenger_post_request(request):
     #return HttpResponse(json.dumps(response_data), content_type="application/json")
