@@ -38,6 +38,8 @@ var driver = {
 
         function ajax_get_passengers(latitude, longitude) {
 
+            var populated = false;
+
             $.ajax({
                 url: "/api/drivers/?format=json",
                 dataType: "json",
@@ -80,6 +82,11 @@ var driver = {
                                                         +           "<span>£" + curr.price + "</span>"
                                                         +    "</div>"
                                                         + "</div>"  );
+
+                            if(!populated) {
+
+                                populated = true;
+                            }
 
                         }
                     } else {
@@ -152,6 +159,22 @@ var driver = {
                 map: map,
                 title:"You are here! (at least within a "+position.coords.accuracy+" meter radius)"
             });
+            var a = ["a", "b", "c"];
+            for (index = 0; index < a.length; ++index) {
+                //        var marker = new google.maps.Marker({
+//            position: new google.maps.LatLng({{ driver.position }}),
+//            map: map,
+//            title:"{{ driver.owner.username }}"
+                console.log(a[index]);
+            }
+
+//        {% for driver in drivers %}
+//        var marker = new google.maps.Marker({
+//            position: new google.maps.LatLng({{ driver.position }}),
+//            map: map,
+//            title:"{{ driver.owner.username }}"
+//        });
+//        {% endfor %}
         }
 
         function error(msg) {

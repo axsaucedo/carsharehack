@@ -142,8 +142,11 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         lat = self.request.GET.get("latitude", "")
         long = self.request.GET.get("longitude", "")
 
+        print lat, long
+
         qs = ActiveRequest.objects.filter(active=True).exclude(inprogress=True)
         current_driver = Driver.objects.get(owner__id=self.request.user.id)
+
         current_driver.position = Geoposition(lat, long)
         current_driver.save()
 
@@ -181,28 +184,35 @@ def driver_accept_request(request):
     """
     activerequest = None
 
+
     try:
-        activerequest = ActiveRequest.objects.get(driver=request.user, inprogress=True)
+        print ActiveRequest.objects.get(driver=request.user,inprogress=False)
+        activerequest = ActiveRequest.objects.get(driver=request.user,inprogress=False)
     except ActiveRequest.DoesNotExist:
         pass
 
-    if request.method == "POST" and not activerequest:
-        response = {}
+    if request.method == "POST":
+        if not activerequest:
 
-        try:
-            activerequestid = request.POST['activerequestid']  # a dict of json stuff
-            this_request = ActiveRequest.objects.get(id=int(activerequestid))
-            this_request.driver = request.user
-            this_request.inprogress = True
-            this_request.save()
+            response = {}
 
-        except e:
-            print e
-            response = { "error" :  e }
+            try:
+                activerequestid = request.POST['activerequestid']  # a dict of json stuff
+                this_request = ActiveRequest.objects.get(id=int(activerequestid))
+                this_request.driver = request.user
+                this_request.inprogress = True
+                this_request.save()
 
-        return HttpResponse(json.dumps(response), content_type="application/json")
+            except e:
+                print e
+                response = { "error" :  e }
 
-    print activerequest
+            return HttpResponse(json.dumps(response), content_type="application/json")
+
+        else:
+            activerequest = ActiveRequest.objects.filter(inprogress=False)
+
+    print "value is ", activerequest
 
     return render(request, 'carshare/driver.html', { 'activerequest' : activerequest })
 
