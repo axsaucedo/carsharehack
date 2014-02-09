@@ -17,32 +17,7 @@
   <li> Testing: {{ user.email }} </li>
  <li>  Testing: {{ user.userprofile.is_driver }} </li>
   <li> Testing: {{ user.userprofile.position }} </li> -->
-<<<<<<< HEAD
-  <div class="textaboveprofile"><h1>Profile Picture </h1></div>
-  <div class="profilepicture"> {% autoescape off %} {{ user.get_profile.image_tag }} {% endautoescape %} </div>
 
-  <div class="mainuserclass col-offset-2"> 
-  <div class="nameclass label label-primary">Your Username: {{ user.username }} </div><br>
-  <div class="nameclass label label-primary"> Your First Name: {{ user.first_name }} </div><br>
-  <div class="nameclass label label-primary"> Your Last Name: {{ user.last_name }} </div><br>
-  <div class="nameclass label label-primary"> Your Email: {{ user.email }} </div><br>
-  {% load disqus_tags %}
-
-</div>
-     {% else %}
-
-
-
-
-   
-                    <h1 class="page-header">Get Authenticated</h1>
-            
-                <h1>You need to login/register an account</h1>
-
-                <a href={% url "login" %}><img src="http://i.imgur.com/F46t2zQ.png"/></a>
-
-                {% endif %}
-=======
   <div class="col-md-3">
       <div class="textaboveprofile"><h1>Welcome! </h1></div>
       <div class="profilepicture"> {% autoescape off %} {{ user.get_profile.image_tag }} {% endautoescape %} </div>
@@ -61,7 +36,6 @@
       {% load disqus_tags %}
       {% disqus_show_comments %}
     </div>
->>>>>>> afe4229d73d1040e62d5cf803020a11c2937037a
 {% endblock %}
 
 
