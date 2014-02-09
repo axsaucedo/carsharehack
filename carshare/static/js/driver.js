@@ -58,15 +58,15 @@ var driver = {
                             curr = res.results[i];
                             passenger_container.append(   "<div class='passenger well' style='height:80px' data-passenger_id=" + curr.id + ">"
                                                         +    "<div class='col-md-8'>"
-                                                        +       "<div>"
-                                                        +           "<span><img src=
+                                                        +       "<div style='clear:both'>"
+                                                        +           "<div style='width:50px; height:50px; background-image: url(http://www.etsu.edu/coe/pictures/placeholder_male.png); background-size: cover; float: left'></div>"
                                                         +           "<span>Name: </span>"
                                                         +           "<span>" + "Dude Broseph" + "</span>"
                                                         +       "</div>"
                                                         +       "<div>"
                                                         +           "<span>No. Passengers: </span>"
                                                         +           "<span>" + curr.num_passengers + "</span>"
-                                                        +           "<span class='col-md-offset-1'>Donation: </span>"
+                                                        +           "<span class='col-md-offset-1'>Distance: </span>"
                                                         +           "<span>£" + curr.price + "</span>"
                                                         +       "</div>"
                                                         +    "</div>"
@@ -74,6 +74,8 @@ var driver = {
                                                         +       "<a class='btn btn-primary'>"
                                                         +           "Give a Ride!"
                                                         +       "</a>"
+                                                        +           "<span class='col-md-offset-1'>Donation: </span>"
+                                                        +           "<span>£" + curr.price + "</span>"
                                                         +    "</div>"
                                                         + "</div>"  );
 
@@ -84,7 +86,7 @@ var driver = {
                 }
             });
 
-            setTimeout(function() { ajax_get_passengers(latitude, longitude) }, 5000);
+//            setTimeout(function() { ajax_get_passengers(latitude, longitude) }, 5000);
         }
 
         $("#find-location-button").bind("click", function lookupGeoData() {
