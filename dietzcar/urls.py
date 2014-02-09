@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from rest_framework.reverse import reverse, reverse_lazy
-from carshare.views import PassengerViewSet, DriverCheckinViewSet
+from carshare.views import PassengerViewSet, DriverCheckinViewSet, test_ajax, driver_view_requests
 #from django.contrib.auth.decorators import login_required
 #from carshare.views import DriverViewSet, UserViewSet
 from django.views.generic import TemplateView
@@ -37,6 +37,9 @@ urlpatterns += patterns('',
                             url(r'^driver/', TemplateView.as_view(template_name='carshare/driver.html')),
                             url(r'', include('social.apps.django_app.urls', namespace='social')),
                             url(r'^fb/', TemplateView.as_view(template_name='accounts/login.html')),
-                            url(r'^driver_view_requests/', 'carshare.views.driver_view_requests', name='driver-view-requests'),
+                            url(r'^driver_view_requests/', driver_view_requests, name='driver-view-requests'),
+
+                            #ajax test
+                            url(r'^test_ajax/$', test_ajax, name='test_ajax'),
                         )
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -15,6 +15,7 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAdminUser
 from rest_framework import mixins
 
+
 def v_dist(v1, v2):
     return sum([(a - b)**2 for a, b in zip(v1, v2)])
 
@@ -94,10 +95,20 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         ordered_requests = sorted(qs, key=dist_lam)
         return ordered_requests
 
+from django.views.decorators.csrf import ensure_csrf_cookie
+@ensure_csrf_cookie
 def driver_view_requests(request):
+    return HttpResponse(json.dumps(response), content_type="application/json")
+
+
+
+import json
+from django.views.decorators.http import require_POST
+def test_ajax(request):
+    response = { "worked" : "yes!"}
+
     return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
-
-
+#    return HttpResponse(json.dumps(response), content_type="application/json")
 
 # from forms import PassengerRequestForm
 # from django.contrib.auth import login
