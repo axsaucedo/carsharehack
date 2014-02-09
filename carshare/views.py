@@ -135,6 +135,7 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
 
         dist_lam = lambda x: get_closest(x, current_driver)
         ordered_requests = sorted(qs, key=dist_lam)
+
         return ordered_requests
 
 class PassengerAddRequestViewSet(viewsets.ModelViewSet):

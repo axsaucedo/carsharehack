@@ -47,7 +47,7 @@ class PassengerSerializer(serializers.HyperlinkedModelSerializer):
 class ValidRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActiveRequest
-        fields = ('id', 'position', 'destination', 'request_time', 'num_passengers')
+        fields = ('id', 'position', 'destination', 'request_time', 'num_passengers', 'price', 'owner')
 
 
 # class DriverCheckInSerializer(serializers.HyperlinkedModelSerializer):
