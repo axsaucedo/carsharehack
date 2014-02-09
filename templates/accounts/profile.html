@@ -19,7 +19,7 @@
         <li>  Testing: {{ user.userprofile.is_driver }} </li>
         <li> Testing: {{ user.userprofile.position }} </li> -->
         <div class="col-md-3">
-          <div class="textaboveprofile"><h1>Welcome! </h1></div>
+          <div class="textaboveprofile" style="color: white;"><h1>Welcome! </h1></div>
           <div class="profilepicture"> {% autoescape off %} {{ user.get_profile.image_tag }} {% endautoescape %} </div>
         </div>
        <div class="mainuserclass col-md-8" style="padding-top: 150px">
