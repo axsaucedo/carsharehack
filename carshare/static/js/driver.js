@@ -56,17 +56,19 @@ var driver = {
 
                         for(i = 0; i < res.results.length; i++) {
                             curr = res.results[i];
-                            passenger_container.append(   "<div class='passenger well' style='height:80px' data-passenger_id=" + curr.id + ">"
+                            passenger_container.append(   "<div class='passenger well' style='height:100px' data-passenger_id=" + curr.id + ">"
                                                         +    "<div class='col-md-8'>"
                                                         +       "<div style='clear:both'>"
-                                                        +           "<div style='width:50px; height:50px; background-image: url(http://www.etsu.edu/coe/pictures/placeholder_male.png); background-size: cover; float: left'></div>"
+                                                        +           "<div style='margin: 0px 10px 0px 10px; width:50px; height:50px; background-image: url(http://www.etsu.edu/coe/pictures/placeholder_male.png); background-size: cover; float: left'></div>"
                                                         +           "<span>Name: </span>"
                                                         +           "<span>" + "Dude Broseph" + "</span>"
                                                         +       "</div>"
                                                         +       "<div>"
                                                         +           "<span>No. Passengers: </span>"
                                                         +           "<span>" + curr.num_passengers + "</span>"
-                                                        +           "<span class='col-md-offset-1'>Distance: </span>"
+                                                        +       "</div>"
+                                                        +       "<div>"
+                                                        +           "<span>Distance: </span>"
                                                         +           "<span>£" + curr.price + "</span>"
                                                         +       "</div>"
                                                         +    "</div>"

@@ -112,6 +112,12 @@ def passengerRequest(request):
 
     return render(request, 'carshare/passenger.html', { 'active' : active })
 
+def viewProfile(request, username):
+
+    user = User.objects.get(username=username)
+
+    return render(request, 'accounts/profile.html', { 'user' : user })
+
 class DriverCheckinViewSet(viewsets.ModelViewSet):
     """
     Whenever a driver checks in, they also create a view with any valid travel requests.
