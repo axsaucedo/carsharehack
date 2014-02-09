@@ -110,6 +110,8 @@ SOCIAL_AUTH_FACEBOOK_SECRET          = '31d1e1884b2c115fa5db73768c09186c'
 DISQUS_API_KEY = '6z7keq1mHdAS68b4Rq6Z4SnwyhWHxprrjqFQtYZK0wofnCRtS4MyjfQIjUI0sT0V'
 DISQUS_WEBSITE_SHORTNAME = 'Sokar'
 
+SITE_ID=1
+
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
 
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
