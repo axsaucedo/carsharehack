@@ -6,10 +6,28 @@
 {% endblock %}
 
 {% block content %}
-   
-                    <h1 class="page-header">Get Authenticated</h1>
-            
-                <h1>You need to login/register an account</h1>
+    <div id="so-kar-title">So Kar</div>
 
-                <a href={% url "login" %}><img src="http://i.imgur.com/F46t2zQ.png"/></a>
+
+    <div class="bs-example col-md-5 col-md-offset-1">
+        <ul id="home-tabs" class="nav nav-tabs" style="margin-bottom: 15px;">
+            <li class="active"><a href="#home-tab-1" data-toggle="tab" style="color:black">Got spare seats?</a></li>
+            <li class=""><a href="#home-tab-2" data-toggle="tab" style="color:black">Want a ride?</a></li>
+            <li class=""><a href="#home-tab-3" data-toggle="tab" style="color:black">Join now!</a></li>
+        </ul>
+        <div id="home-tabbed-content" class="tab-content" style="height: 180px; position: relative; background-color: rgba(0, 0, 0, 0.6); padding: 20px 20px 20px 20px; color: white; border-radius: 15px;">
+            <div class="tab-pane fade active in" id="home-tab-1">
+                <p>Are you looking to make some money!</p>
+                <button class="btn btn-danger" onclick="location.href='/create';">Earn Money!</button>
+            </div>
+            <div class="tab-pane fade" id="home-tab-2">
+                <p>You can find the best events in your area, sort them by popularity, see who is already attending, and even contact the organizers to get more information about the event!</p>
+                <button class="btn btn-danger bottom" onclick="location.href='/find';">Find a ride!</button>
+            </div>
+            <div class="tab-pane fade" id="home-tab-3">
+                <p>Once you have found your favourite events your can join as many events as you want - you will be able to keep track of all you paste events as well as your upcoming events!</p>
+                <button class="btn btn-danger" onclick="location.href='/find';">Join</button>
+            </div>
+        </div>
+    </div>
 {% endblock %}

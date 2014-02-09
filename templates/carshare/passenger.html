@@ -26,6 +26,8 @@
                 </article>
             </div>
             <div class="col-md-6">
+                <br>
+
                 <div id="passenger-form-container" class="well">
                     <form id="passenger-form" class="form-horizontal" method="POST">
                         {% csrf_token %}
@@ -72,16 +74,14 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="passenger-form-price" class="col-md-3 control-label">Price</label>
-                                <div class="col-md-9" style="padding-bottom: 20px;">
+                                <label for="passenger-form-price" class="col-md-2 control-label">Price</label>
+                                <div class="col-md-4" style="padding-bottom: 20px;">
                                     <input id="passenger-form-price" name="price" class="form-control" type="text" placeholder="Required">
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <label for="passenger-form-passengers" class="col-md-3 control-label">No. Passengers</label>
-                                <div class="col-md-9" style="padding-bottom: 20px;">
-                                    <input id="passenger-form-passengers" name="passengers" class="form-control" type="text" placeholder="Required">
+                                <label for="passenger-form-passengers" class="col-md-2 control-label">No. Passengers</label>
+                                <div class="col-md-4" style="padding-bottom: 20px;">
+                                    <input id="passenger-form-passengers" name="passengers" class="form-control " type="text" placeholder="Required">
                                 </div>
                             </div>
 

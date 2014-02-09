@@ -50,10 +50,26 @@ var driver = {
                 },
                 success : function(res) {
                     if (!res.error) {
-                        console.log(res.results);
+
+                        passenger_container.html("");
+
                         for(i = 0; i < res.results.length; i++) {
-                            passenger_container.append("");
-//
+                            curr = res.results[i];
+                            passenger_container.append(   "<div class='passenger well' style='height:80px' data-passenger_id=" + curr.id + ">"
+                                                        +    "<div class='col-md-8'>"
+                                                        +       "<div>"
+                                                        +           "<span>Name: </span>"
+                                                        +           "<span>" + "Dude Broseph" + "</span>"
+                                                        +       "</div>"
+                                                        +       "<div>"
+                                                        +           "<span>No. Passengers: </span>"
+                                                        +           "<span>" + curr.num_passengers + "</span>"
+                                                        +           "<span class='col-md-offset-1'>Amount: </span>"
+                                                        +           "<span>" + curr.price + "</span>"
+                                                        +       "</div>"
+                                                        +    "</div>"
+                                                        + "</div>"  );
+
                         }
                     } else {
 
