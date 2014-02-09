@@ -139,13 +139,14 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         lat = self.request.GET.get("latitude", "")
         long = self.request.GET.get("longitude", "")
 
-        qs = ActiveRequest.objects.filter(inprogress=False).filter(active=True).filter(successful=False)
+        qs = ActiveRequest.objects.filter(active=True).exclude(inprogress=True)
         current_driver = Driver.objects.get(owner__id=self.request.user.id)
         current_driver.position = Geoposition(lat, long)
         current_driver.save()
 
         dist_lam = lambda x: get_closest(x, current_driver)
         ordered_requests = sorted(qs, key=dist_lam)
+        print     ordered_requests, qs
 
         return ordered_requests
 
@@ -170,26 +171,31 @@ def logout_view(request):
 
 
 import json
-@require_POST
 def driver_accept_request(request):
     """
     The driver has accepted an active request.
     Find active request and set it to in progress
     """
-    response = {}
 
-    try:
-        activerequestid = request.POST['activerequestid']  # a dict of json stuff
-        this_request = ActiveRequest.objects.get(id=int(activerequestid))
-        this_request.inprogress = True
-        this_request.save()
+    activerequest = ActiveRequest.objects.get(driver=request.user, inprogress=True)
 
-    except e:
-        print e
-        response = { "error" :  e }
+    if request.method == "POST" and not activerequest:
+        response = {}
 
-    return HttpResponse(json.dumps(response), content_type="application/json")
+        try:
+            activerequestid = request.POST['activerequestid']  # a dict of json stuff
+            this_request = ActiveRequest.objects.get(id=int(activerequestid))
+            this_request.driver = request.user
+            this_request.inprogress = True
+            this_request.save()
 
+        except e:
+            print e
+            response = { "error" :  e }
+
+        return HttpResponse(json.dumps(response), content_type="application/json")
+
+    return render(request, 'carshare/driver.html', { 'activerequest' : activerequest })
 
 
 
