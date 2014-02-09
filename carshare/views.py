@@ -110,8 +110,10 @@ def passengerRequest(request):
 
         except:
             pass
-
-    return render(request, 'carshare/passenger.html', { 'active' : active })
+    context = RequestContext(request)
+    context['drivers'] = Driver.objects.all()
+    context['active'] = active
+    return render(request, 'carshare/passenger.html', context)
 
 def viewProfile(request, username):
 
