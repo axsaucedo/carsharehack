@@ -84,29 +84,33 @@ class PassengerViewSet(viewsets.ModelViewSet):
 @login_required(login_url='/login/')
 def passengerRequest(request):
 
-    active = ActiveRequest.objects.filter(owner=request.user, active=True).exists()
+    active = ActiveRequest.objects.filter(owner=request.user, active=True)
 
-    if not active:
+    if request.method == "POST":
         try:
-            post = request.POST
+            if active:
+                return render(request, 'carshare/passenger.html', { 'active' : active })
 
-            currlat = post['currlat']
-            currlong = post['currlong']
-            destlat = post['destlat']
-            destlong = post['destlong']
-            price = post['price']
-            passengers = post['passengers']
-            owner = request.user
+            else:
+                post = request.POST
 
-            ar = ActiveRequest(   owner=owner
-                                , position=Geoposition(currlat, currlong)
-                                , destination=Geoposition(destlat, destlong)
-                                , price=price
-                                , num_passengers=passengers)
+                currlat = post['currlat']
+                currlong = post['currlong']
+                destlat = post['destlat']
+                destlong = post['destlong']
+                price = post['price']
+                passengers = post['passengers']
+                owner = request.user
 
-            ar.save()
+                ar = ActiveRequest(   owner=owner
+                                    , position=Geoposition(currlat, currlong)
+                                    , destination=Geoposition(destlat, destlong)
+                                    , price=price
+                                    , num_passengers=passengers)
 
-            active = True
+                ar.save()
+
+                active = True
 
         except:
             pass
