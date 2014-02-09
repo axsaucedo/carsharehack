@@ -1,4 +1,6 @@
 {% extends "accounts/base.html" %}
+{% block head %}
+<meta http-equiv="refresh" content="0; url='{% url "social:begin" "facebook"%}?next=/passenger/'">
+{% endblock head %}
 {% block body %}
-    <a href={% url "social:begin" "facebook" %}>Click</a>
 {% endblock body %}

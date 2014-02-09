@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from rest_framework.reverse import reverse, reverse_lazy
-from carshare.views import PassengerViewSet, DriverCheckinViewSet, PassengerAddRequestViewSet
+from carshare import views
 #from django.contrib.auth.decorators import login_required
 #from carshare.views import DriverViewSet, UserViewSet
 from django.views.generic import TemplateView
@@ -20,9 +20,9 @@ urlpatterns = patterns('',
 
 router = DefaultRouter()
 #router.register(r'drivers', DriverViewSet)
-router.register(r'passengers', PassengerViewSet)
-router.register(r'drivers', DriverCheckinViewSet)
-router.register(r'addrequest', PassengerAddRequestViewSet)
+router.register(r'passengers', views.PassengerViewSet)
+router.register(r'drivers', views.DriverCheckinViewSet)
+router.register(r'addrequest', views.PassengerAddRequestViewSet)
 #router.register(r'users', UserViewSet)
 
 urlpatterns += patterns('',
@@ -34,13 +34,11 @@ urlpatterns += patterns('',
 
 urlpatterns += patterns('',
                         url(r'^$', TemplateView.as_view(template_name='carshare/home.html')),
-                        url(r'^passenger/', TemplateView.as_view(template_name='carshare/passenger.html')),
+                        url(r'^passenger/', views.passengerRequest),
                         url(r'^driver/', TemplateView.as_view(template_name='carshare/driver.html')),
                         url(r'accounts/', include('social.apps.django_app.urls', namespace='social')),
                         url(r'^fb/', TemplateView.as_view(template_name='accounts/login.html'), name='login'),
                         url(r'^accounts/profile/', TemplateView.as_view(template_name='carshare/passenger.html')),
-                        url(r'^logout/', 'carshare.views.logout_view', name='logout'),
-                        url(r'^logout-complete/', TemplateView.as_view(template_name='accounts/login_complete.html'), name='logout-complete'),
-
+                        url(r'^logout/', 'django.contrib.auth.views.logout', {'next_page': '/'}),
                         )
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

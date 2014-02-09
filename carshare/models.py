@@ -23,7 +23,8 @@ class ActiveRequest(models.Model):
     destination = GeopositionField()
     request_time = DateTimeField(auto_now=True)
     num_passengers = IntegerField(default=1)
-    #price = models.DecimalField(max_digits=8, decimal_places=2)
+    price = models.DecimalField(max_digits=8, decimal_places=2)
+    successful = models.BooleanField(default=False)
 
 
 class UserProfile(models.Model):

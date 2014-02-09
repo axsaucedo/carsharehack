@@ -50,40 +50,18 @@ var driver = {
                 },
                 success : function(res) {
                     if (!res.error) {
-                        console.log(res);
+                        console.log(res.results);
+                        for(i = 0; i < res.results.length; i++) {
+                            passenger_container.append("");
+//
+                        }
                     } else {
 
                     }
                 }
             });
 
-//            var frm = $('#driver-form');
-//            console.log(frm.attr('action'));
-//
-//            function ajax_get_passengers(latitude, longitude) {
-//
-//                frm.submit(function () {
-//                    $.ajax({
-//                        url: frm.attr('action'),
-//                        dataType: "json",
-//                        type: "POST",
-//                        contentType: "application/json",
-//                        success: function (data) {
-//                            console.log("hei");
-//                        },
-//                        error: function(data) {
-//                            console.log("nope")
-//                        }
-//                    });
-//                    return false;
-//                });
-//
-//                console.log("submitted")
-//
-//                frm.submit();
-//            }
-
-//            setTimeout(function() { ajax_get_passengers(latitude, longitude) }, 1000);
+            setTimeout(function() { ajax_get_passengers(latitude, longitude) }, 1000);
         }
 
         $("#find-location-button").bind("click", function lookupGeoData() {

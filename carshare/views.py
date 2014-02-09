@@ -1,6 +1,7 @@
 import decimal
 import json
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
@@ -78,6 +79,53 @@ class PassengerViewSet(viewsets.ModelViewSet):
 #         ordered_drivers = sorted(qs, key=dist_lam)
 #         return ordered_drivers
 
+
+#from django import forms
+#class ActiveRequestCreationForm(forms.ModelForm):
+#
+#    class Meta:
+#        model = ActiveRequest
+#        exclude = ['owner']
+#
+#    def save(self, commit=True):
+#        user = super(EFUserCreationForm, self).save(commit=False)
+#        if commit:
+#            user.save()
+#        return user
+
+@login_required(login_url='/login/')
+def passengerRequest(request):
+
+    active = False
+
+    try:
+        post = request.POST
+
+        currlat = post['currlat']
+        currlong = post['currlong']
+        destlat = post['destlat']
+        destlong = post['destlong']
+        price = post['price']
+        passengers = post['passengers']
+        owner = request.user
+
+        ar = ActiveRequest(   owner=owner
+                            , position=Geoposition(currlat, currlong)
+                            , destination=Geoposition(destlat, destlong)
+                            , price=price
+                            , num_passengers=passengers)
+
+        ar.save()
+
+        active = True
+
+    except:
+        pass
+
+#    else:
+#        form = ActiveRequestCreationForm()
+
+    return render(request, 'carshare/passenger.html', { 'active' : active })
 
 class DriverCheckinViewSet(viewsets.ModelViewSet):
     """

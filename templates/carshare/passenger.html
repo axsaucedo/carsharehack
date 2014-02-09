@@ -8,6 +8,10 @@
 {% endblock %}
 
 {% block content %}
+
+
+ {% if request.user.is_authenticated %}
+
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -26,7 +30,6 @@
                     <form id="passenger-form" class="form-horizontal" method="POST">
                         {% csrf_token %}
                         <fieldset style="border: none;">
-                            <legend>Please fill in all the required fields.</legend>
 
                             <div class="form-group">
                                 <fieldset>
@@ -58,6 +61,7 @@
                                             <input id="passenger-form-city" name="city" class="form-control" type="text" readonly>
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <label for="passenger-form-zip" class="col-md-3 control-label">Zip Code</label>
                                         <div class="col-md-9">
@@ -70,9 +74,17 @@
                             <div class="form-group">
                                 <label for="passenger-form-price" class="col-md-3 control-label">Price</label>
                                 <div class="col-md-9" style="padding-bottom: 20px;">
-                                    <input id="passenger-form-website" name="website" class="form-control" type="text" placeholder="Required">
+                                    <input id="passenger-form-price" name="price" class="form-control" type="text" placeholder="Required">
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label for="passenger-form-passengers" class="col-md-3 control-label">No. Passengers</label>
+                                <div class="col-md-9" style="padding-bottom: 20px;">
+                                    <input id="passenger-form-passengers" name="passengers" class="form-control" type="text" placeholder="Required">
+                                </div>
+                            </div>
+
 
                         </fieldset>
                         <div class="form-group">
@@ -85,6 +97,23 @@
             </div>
         </div>
     </div>
+    
+
+
+
+     {% else %}
+
+
+
+
+   
+                    <h1 class="page-header">Get Authenticated</h1>
+            
+                <h1>You need to login/register an account</h1>
+
+                <a href={% url "login" %}><img src="http://i.imgur.com/F46t2zQ.png"/></a>
+      
+                {% endif %}
 {% endblock %}
 
 
