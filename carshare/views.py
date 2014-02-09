@@ -10,6 +10,7 @@ from carshare.permissions import IsOwnerOrReadOnly, IsOwner, PassengerPermission
     DriverCheckInPermissions, PassengerAddRequestPermissions
 from carshare.serializers import UserSerializer, DriverSerializer, PassengerSerializer, GeopositionFieldSerializer, \
     ValidRequestSerializer
+from geoposition import Geoposition
 from django.contrib.auth.models import User
 from django.views.generic import ListView, TemplateView
 from rest_framework import permissions
@@ -77,6 +78,7 @@ class PassengerViewSet(viewsets.ModelViewSet):
 #         ordered_drivers = sorted(qs, key=dist_lam)
 #         return ordered_drivers
 
+
 class DriverCheckinViewSet(viewsets.ModelViewSet):
     """
     Whenever a driver checks in, they also create a view with any valid travel requests.
@@ -90,8 +92,14 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         """
         Queryset is the requests located near them.
         """
+        lat = self.request.GET.get("latitude", "")
+        long = self.request.GET.get("longitude", "")
+
         qs = ActiveRequest.objects.all()
         current_driver = Driver.objects.get(owner__id=self.request.user.id)
+        current_driver.position = Geoposition(lat, long)
+        current_driver.save()
+
         dist_lam = lambda x: get_closest(x, current_driver)
         ordered_requests = sorted(qs, key=dist_lam)
         return ordered_requests
@@ -104,18 +112,6 @@ class PassengerAddRequestViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         return ActiveRequest.objects.filter(owner__id=self.request.user.id)
 
-
-def driver_view_requests(request):
-    #return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
-    return render_to_response(reverse('activerequest-list') + '?format=json', context_instance=RequestContext(request))
-
-import json
-from django.views.decorators.http import require_POST
-def test_ajax(request):
-    response = { "worked" : "yes!"}
-
-    return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
-#    return HttpResponse(json.dumps(response), content_type="application/json")
 
 def passenger_post_request(request):
     #return HttpResponse(json.dumps(response_data), content_type="application/json")
