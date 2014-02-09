@@ -182,7 +182,7 @@ def driver_accept_request(request):
     activerequest = None
 
     try:
-        activerequest = ActiveRequest.objects.get(driver=request.user, inprogress=True)
+        activerequest = ActiveRequest.objects.filter(inprogress=False)
     except ActiveRequest.DoesNotExist:
         pass
 
