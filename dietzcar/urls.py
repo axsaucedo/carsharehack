@@ -38,7 +38,8 @@ urlpatterns += patterns('',
                         url(r'^driver/', TemplateView.as_view(template_name='carshare/driver.html')),
                         url(r'accounts/', include('social.apps.django_app.urls', namespace='social')),
                         url(r'^fb/', TemplateView.as_view(template_name='accounts/login.html'), name='login'),
-                        url(r'^logout/', TemplateView.as_view(template_name='accounts/logout.html'), name='logout'),
+                        url(r'^logout/', 'carshare.views.logout_view', name='logout'),
+                        url(r'^logout-complete/', TemplateView.as_view(template_name='accounts/login_complete.html'), name='logout-complete'),
                         url(r'^driver_view_requests/', 'carshare.views.driver_view_requests', name='driver-view-requests'),
                         )
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

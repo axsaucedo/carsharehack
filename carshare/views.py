@@ -1,7 +1,9 @@
 import decimal
 import json
+from django.contrib.auth import logout as auth_logout
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
+from django.template import RequestContext
 from rest_framework.reverse import reverse
 from carshare.models import Driver, Passenger, ActiveRequest
 from carshare.permissions import IsOwnerOrReadOnly, IsOwner, PassengerPermissions,  \
@@ -112,3 +114,8 @@ def passenger_post_request(request):
     #return HttpResponse(json.dumps(response_data), content_type="application/json")
     return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
 
+
+def logout_view(request):
+    """Logs out user"""
+    auth_logout(request)
+    return HttpResponseRedirect('/')
