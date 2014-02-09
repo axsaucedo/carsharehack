@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
+from django.views.decorators.http import require_POST
 from rest_framework.reverse import reverse
 from carshare.models import Driver, Passenger, ActiveRequest
 from carshare.permissions import IsOwnerOrReadOnly, IsOwner, PassengerPermissions,  \
@@ -162,3 +163,9 @@ def logout_view(request):
     """Logs out user"""
     auth_logout(request)
     return HttpResponseRedirect('/')
+
+
+@require_POST
+def driver_accept_request(request):
+    if request.method == 'POST':
+        data = json.loads(request.raw_post_data)

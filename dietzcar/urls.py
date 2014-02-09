@@ -40,6 +40,7 @@ urlpatterns += patterns('',
                         url(r'^login/', TemplateView.as_view(template_name='accounts/login.html'), name='login'),
                         url(r'^help/', TemplateView.as_view(template_name='carshare/help.html')),
                         url(r'^accounts/(?P<username>.+)/$', views.viewProfile, name='profile'),
+                        url(r'^give_ride/', 'carshare.views.driver_accept_request', name='give-ride'),
                         url(r'^logout/', 'django.contrib.auth.views.logout', {'next_page': '/'}),
                         )
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
