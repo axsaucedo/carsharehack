@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <div id="driver-site-info" data-get_passengers="http://localhost:8000/api/drivers/?format=json"></div>
+    <div id="driver-site-info" data-give_ride_url={% url 'give-ride' %} data-get_passengers="http://localhost:8000/api/drivers/?format=json"></div>
 
     <div class="container">
         <div class="row">
