@@ -40,7 +40,7 @@ urlpatterns += patterns('',
                         url(r'^login/', TemplateView.as_view(template_name='accounts/login.html'), name='login'),
                         url(r'^help/', TemplateView.as_view(template_name='carshare/help.html')),
                         url(r'^give_ride/', 'carshare.views.driver_accept_request', name='give-ride'),
-                        url(r'^accept_driver/', 'carshare.views.passenger_accept_driver', name='accept-driver'),
+                        #url(r'^accept_driver/', 'carshare.views.passenger_accept_driver', name='accept-driver'),
                         url(r'^accounts/view/(?P<username>.+)/$', views.viewProfile, name='profile'),
                         url(r'^logout/', 'django.contrib.auth.views.logout', {'next_page': '/'}),
                         )
