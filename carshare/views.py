@@ -214,7 +214,8 @@ def driver_accept_request(request):
 
     print "value is ", activerequest
 
-    return render(request, 'carshare/driver.html', { 'activerequest' : activerequest })
+    testytest = ActiveRequest.objects.filter(inprogress=False)
+    return render(request, 'carshare/driver.html', { 'activerequest' : activerequest, 'testytest': testytest })
 
 
 

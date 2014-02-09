@@ -16,69 +16,69 @@
                 <div class="row">
                     <h1 class="page-header">Offer someone a ride!</h1>
                 </div>
-                <h1>Help </h1>
+                <h1>Find the awesome people around you! </h1>
                 <br><br>
 
-                    <script type="text/javascript">
-    function success(position) {
-            var s = document.querySelector('#status');
-
-            if (s.className == 'success') {
-                // not sure why we're hitting this twice in FF, I think it's to do with a cached result coming back
-                return;
-            }
-
-            s.innerHTML = "found you!";
-            s.className = 'success';
-
-            var mapcanvas = document.createElement('div');
-            mapcanvas.id = 'mapcanvas';
-            mapcanvas.style.height = '250px';
-            mapcanvas.style.width = '100%';
-
-            document.querySelector('article').appendChild(mapcanvas);
-
-            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            $('#passenger-form-curr-lat').attr("value", position.coords.latitude);
-            $('#passenger-form-curr-long').attr("value", position.coords.longitude);
-
-            var myOptions = {
-                zoom: 15,
-                center: latlng,
-                mapTypeControl: false,
-                navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
-            var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
-
-            var marker = new google.maps.Marker({
-                position: latlng,
-                map: map,
-                title: "Me"
-            });
-        {% for req in activerequest %}
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng({% if req.position %}{{ req.position }}{% else %}{% endif %}),
-            map: map,
-            title:"{{ req.owner.username }}"
-        });
-        {% endfor %}
-      }
-    function error(msg) {
-            var s = document.querySelector('#status');
-            s.innerHTML = typeof msg == 'string' ? msg : "failed";
-            s.className = 'fail';
-
-            // console.log(arguments);
-        }
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(success, error);
-        } else {
-            error('not supported');
-        }
-
-   </script>
+{#                    <script type="text/javascript">#}
+{#    function success(position) {#}
+{#            var s = document.querySelector('#status');#}
+{##}
+{#            if (s.className == 'success') {#}
+{#                // not sure why we're hitting this twice in FF, I think it's to do with a cached result coming back#}
+{#                return;#}
+{#            }#}
+{##}
+{#            s.innerHTML = "found you!";#}
+{#            s.className = 'success';#}
+{##}
+{#            var mapcanvas = document.createElement('div');#}
+{#            mapcanvas.id = 'mapcanvas';#}
+{#            mapcanvas.style.height = '250px';#}
+{#            mapcanvas.style.width = '100%';#}
+{##}
+{#            document.querySelector('article').appendChild(mapcanvas);#}
+{##}
+{#            var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);#}
+{#            $('#passenger-form-curr-lat').attr("value", position.coords.latitude);#}
+{#            $('#passenger-form-curr-long').attr("value", position.coords.longitude);#}
+{##}
+{#            var myOptions = {#}
+{#                zoom: 15,#}
+{#                center: latlng,#}
+{#                mapTypeControl: false,#}
+{#                navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},#}
+{#                mapTypeId: google.maps.MapTypeId.ROADMAP#}
+{#            };#}
+{#            var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);#}
+{##}
+{#            var marker = new google.maps.Marker({#}
+{#                position: latlng,#}
+{#                map: map,#}
+{#                title: "Me"#}
+{#            });#}
+{#        {% for req in activerequest %}#}
+{#        var marker = new google.maps.Marker({#}
+{#            position: new google.maps.LatLng({{ req.position }}),#}
+{#            map: map,#}
+{#            title:"{{ req.owner.username }}"#}
+{#        });#}
+{#        {% endfor %}#}
+{#      }#}
+{#    function error(msg) {#}
+{#            var s = document.querySelector('#status');#}
+{#            s.innerHTML = typeof msg == 'string' ? msg : "failed";#}
+{#            s.className = 'fail';#}
+{##}
+{#            // console.log(arguments);#}
+{#        }#}
+{##}
+{#        if (navigator.geolocation) {#}
+{#            navigator.geolocation.getCurrentPosition(success, error);#}
+{#        } else {#}
+{#            error('not supported');#}
+{#        }#}
+{##}
+{#   </script>#}
                 <article>
                     <h4 style="color: white">Finding your location: <span id="status">checking...</span></h4>
                 </article>

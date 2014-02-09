@@ -38,8 +38,6 @@ var driver = {
 
         function ajax_get_passengers(latitude, longitude) {
 
-            var populated = false;
-
             $.ajax({
                 url: "/api/drivers/?format=json",
                 dataType: "json",
@@ -69,10 +67,10 @@ var driver = {
                                                         +           "<span>No. Passengers: </span>"
                                                         +           "<span>" + curr.num_passengers + "</span>"
                                                         +       "</div>"
-                                                        +       "<div>"
-                                                        +           "<span>Distance: </span>"
-                                                        +           "<span>£" + curr.price + "</span>"
-                                                        +       "</div>"
+//                                                        +       "<div>"
+//                                                        +           "<span>Distance: </span>"
+//                                                        +           "<span>£" + curr.price + "</span>"
+//                                                        +       "</div>"
                                                         +    "</div>"
                                                         +    "<div class='col-md-4'>"
                                                         +       "<a class='btn btn-primary give-ride-btn'>"
@@ -82,11 +80,6 @@ var driver = {
                                                         +           "<span>£" + curr.price + "</span>"
                                                         +    "</div>"
                                                         + "</div>"  );
-
-                            if(!populated) {
-
-                                populated = true;
-                            }
 
                         }
                     } else {
