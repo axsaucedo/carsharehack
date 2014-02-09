@@ -8,6 +8,10 @@
 {% endblock %}
 
 {% block content %}
+
+
+ {% if request.user.is_authenticated %}
+
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -85,6 +89,23 @@
             </div>
         </div>
     </div>
+    
+
+
+
+     {% else %}
+
+
+
+
+   
+                    <h1 class="page-header">Get Authenticated</h1>
+            
+                <h1>You need to login/register an account</h1>
+
+                <a href={% url "login" %}><img src="http://i.imgur.com/F46t2zQ.png"/></a>
+      
+                {% endif %}
 {% endblock %}
 
 
