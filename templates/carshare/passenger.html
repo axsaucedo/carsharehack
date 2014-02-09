@@ -88,9 +88,9 @@
             <div class="col-md-6">
                 <br>
 
-                <div id="passenger-form-container" class="well">
+                {% if not active %}
 
-                    {% if not active %}
+                <div id="passenger-form-container" class="well">
 
                     <form id="passenger-form" class="form-horizontal" method="POST">
                         {% csrf_token %}
@@ -156,13 +156,14 @@
                             </div>
                         </div>
                     </form>
-
-                    {% else %}
-
-
-
-                    {% endif %}
                 </div>
+
+
+                {% else %}
+
+                   <h1>Your driver will be picking you up soon!</h1>
+
+                {% endif %}
             </div>
         </div>
     </div>

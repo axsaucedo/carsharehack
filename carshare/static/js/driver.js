@@ -128,7 +128,10 @@ var driver = {
             $('#driver-form-lat').attr("value", position.coords.latitude);
             $('#driver-form-longx').attr("value", position.coords.longitude);
 
-            ajax_get_passengers(position.coords.latitude, position.coords.longitude);
+            console.log($("#driver-site-info").attr("data-no_activerequest"))
+            //Execute the ajax_get_passengers only if there is no previous active request
+            if($("#driver-site-info").attr("data-no_activerequest"))
+                ajax_get_passengers(position.coords.latitude, position.coords.longitude);
 
             var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
