@@ -52,21 +52,28 @@ var driver = {
                     if (!res.error) {
 
                         passenger_container.html("");
+                        console.log(res.results);
 
                         for(i = 0; i < res.results.length; i++) {
                             curr = res.results[i];
                             passenger_container.append(   "<div class='passenger well' style='height:80px' data-passenger_id=" + curr.id + ">"
                                                         +    "<div class='col-md-8'>"
                                                         +       "<div>"
+                                                        +           "<span><img src=
                                                         +           "<span>Name: </span>"
                                                         +           "<span>" + "Dude Broseph" + "</span>"
                                                         +       "</div>"
                                                         +       "<div>"
                                                         +           "<span>No. Passengers: </span>"
                                                         +           "<span>" + curr.num_passengers + "</span>"
-                                                        +           "<span class='col-md-offset-1'>Amount: </span>"
-                                                        +           "<span>" + curr.price + "</span>"
+                                                        +           "<span class='col-md-offset-1'>Donation: </span>"
+                                                        +           "<span>£" + curr.price + "</span>"
                                                         +       "</div>"
+                                                        +    "</div>"
+                                                        +    "<div class='col-md-4'>"
+                                                        +       "<a class='btn btn-primary'>"
+                                                        +           "Give a Ride!"
+                                                        +       "</a>"
                                                         +    "</div>"
                                                         + "</div>"  );
 
@@ -77,7 +84,7 @@ var driver = {
                 }
             });
 
-            setTimeout(function() { ajax_get_passengers(latitude, longitude) }, 1000);
+            setTimeout(function() { ajax_get_passengers(latitude, longitude) }, 5000);
         }
 
         $("#find-location-button").bind("click", function lookupGeoData() {
