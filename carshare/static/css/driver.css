@@ -11,3 +11,6 @@
     -ms-transition: background-color 1000ms linear;
     transition: background-color 1000ms linear;
 }
+.navbar-default .navbar-brand {
+color: #F00;
+}

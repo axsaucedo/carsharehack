@@ -7,7 +7,10 @@
 {% block head-includes %}
     <script src="http://api.mygeoposition.com/api/geopicker/api.js" type="text/javascript"></script>
 
-    <link rel="stylesheet" type="text/css" href="/static/css/passenger.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">#
+    <style>.navbar-default .navbar-brand {
+color: #F00;
+}</style>
     <script type="text/javascript" src="/static/js/passenger.js"></script>
 {% endblock %}
 
@@ -16,17 +19,23 @@
 
  {% if request.user.is_authenticated %}
 
-   Testing: {{ user.first_name }} {{ user.last_name }}.<br>
-   Testing: {{ user.username }} 
-   Testing: {{ user.email }}
-   Testing: {{ user.userprofile.is_driver }}
-   Testing: {{ user.userprofile.position }}
-   Testing: {{ user.profile_image }}
-    
 
-{% load disqus_tags %}
+   <!-- <li> Testing: {{ user.first_name }} {{ user.last_name }}.</li>
+  <li> Testing: {{ user.username }} </li>
+  <li> Testing: {{ user.email }} </li>
+ <li>  Testing: {{ user.userprofile.is_driver }} </li>
+  <li> Testing: {{ user.userprofile.position }} </li> -->
+  <div class="textaboveprofile"><h1>Profile Picture </h1></div>
+  <div class="profilepicture"> {% autoescape off %} {{ user.get_profile.image_tag }} {% endautoescape %} </div>
+
+  <div class="mainuserclass col-offset-2"> 
+  <div class="nameclass label label-primary">Your Username: {{ user.username }} </div><br>
+  <div class="nameclass label label-primary"> Your First Name: {{ user.first_name }} </div><br>
+  <div class="nameclass label label-primary"> Your Last Name: {{ user.last_name }} </div><br>
+  <div class="nameclass label label-primary"> Your Email: {{ user.email }} </div><br>
+  {% load disqus_tags %}
 {% disqus_show_comments %}
-
+</div>
      {% else %}
 
 
