@@ -5,3 +5,4 @@ carsharehack
 *.iml
 .idea
 *.pyc
+db.sqllite
