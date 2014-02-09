@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from rest_framework.reverse import reverse, reverse_lazy
-from carshare.views import PassengerViewSet, DriverCheckinViewSet
+from carshare.views import PassengerViewSet, DriverCheckinViewSet, PassengerAddRequestViewSet
 #from django.contrib.auth.decorators import login_required
 #from carshare.views import DriverViewSet, UserViewSet
 from django.views.generic import TemplateView
@@ -22,6 +22,7 @@ router = DefaultRouter()
 #router.register(r'drivers', DriverViewSet)
 router.register(r'passengers', PassengerViewSet)
 router.register(r'drivers', DriverCheckinViewSet)
+router.register(r'addrequest', PassengerAddRequestViewSet)
 #router.register(r'users', UserViewSet)
 
 urlpatterns += patterns('',
@@ -36,7 +37,7 @@ urlpatterns += patterns('',
                         url(r'^passenger/', TemplateView.as_view(template_name='carshare/passenger.html')),
                         url(r'^driver/', TemplateView.as_view(template_name='carshare/driver.html')),
                         url(r'accounts/', include('social.apps.django_app.urls', namespace='social')),
-                        url(r'^fb/', TemplateView.as_view(template_name='accounts/login.html')),
+                        url(r'^fb/', TemplateView.as_view(template_name='accounts/login.html'), name='login'),
                         url(r'^logout/', TemplateView.as_view(template_name='accounts/logout.html'), name='logout'),
                         url(r'^driver_view_requests/', 'carshare.views.driver_view_requests', name='driver-view-requests'),
                         )

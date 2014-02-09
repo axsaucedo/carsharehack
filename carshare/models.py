@@ -18,7 +18,7 @@ class Passenger(models.Model):
 
 
 class ActiveRequest(models.Model):
-    passenger_id = models.ForeignKey('auth.User')
+    owner = models.ForeignKey('auth.User')
     position = GeopositionField()
     destination = GeopositionField()
     request_time = DateTimeField(auto_now=True)

@@ -5,7 +5,7 @@ from django.shortcuts import render
 from rest_framework.reverse import reverse
 from carshare.models import Driver, Passenger, ActiveRequest
 from carshare.permissions import IsOwnerOrReadOnly, IsOwner, PassengerPermissions,  \
-    DriverCheckInPermissions
+    DriverCheckInPermissions, PassengerAddRequestPermissions
 from carshare.serializers import UserSerializer, DriverSerializer, PassengerSerializer, GeopositionFieldSerializer, \
     ValidRequestSerializer
 from django.contrib.auth.models import User
@@ -95,6 +95,12 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         return ordered_requests
 
 
+class PassengerAddRequestViewSet(viewsets.ModelViewSet):
+    model = ActiveRequest
+    serializer_class = ValidRequestSerializer
+    permission_classes = [permissions.IsAuthenticated, PassengerAddRequestPermissions]
+
+
 def driver_view_requests(request):
     return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
 
@@ -103,22 +109,3 @@ def passenger_post_request(request):
     #return HttpResponse(json.dumps(response_data), content_type="application/json")
     return HttpResponseRedirect(reverse('activerequest-list') + '?format=json')
 
-
-
-# from forms import PassengerRequestForm
-# from django.contrib.auth import login
-# from django.http import HttpResponseRedirect
-#
-#
-# def add_request(request):
-#     if request.method == "POST":
-#         form = PassengerRequestForm(request.POST)
-#         if form.is_valid():
-#             new_user = User.objects.create_user(**form.cleaned_data)
-#             login(new_user)
-#             # redirect, or however you want to get to the main view
-#             return HttpResponseRedirect('main.html')
-#     else:
-#         form = PassengerRequestForm()
-#
-#     return render(request, 'carshare/add_request.html', {'form': form})
