@@ -39,8 +39,6 @@ urlpatterns += patterns('',
                         url(r'accounts/', include('social.apps.django_app.urls', namespace='social')),
                         url(r'^fb/', TemplateView.as_view(template_name='accounts/login.html'), name='login'),
                         url(r'^accounts/profile/', TemplateView.as_view(template_name='carshare/passenger.html')),
-                        url(r'^home/', TemplateView.as_view(template_name='carshare/home.html')),
-                        url(r'^joinus/', TemplateView.as_view(template_name='carshare/joinus.html')),
                         url(r'^logout/', 'django.contrib.auth.views.logout', {'next_page': '/'}),
 
                         )

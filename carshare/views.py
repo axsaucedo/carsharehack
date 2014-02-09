@@ -80,50 +80,35 @@ class PassengerViewSet(viewsets.ModelViewSet):
 #         return ordered_drivers
 
 
-#from django import forms
-#class ActiveRequestCreationForm(forms.ModelForm):
-#
-#    class Meta:
-#        model = ActiveRequest
-#        exclude = ['owner']
-#
-#    def save(self, commit=True):
-#        user = super(EFUserCreationForm, self).save(commit=False)
-#        if commit:
-#            user.save()
-#        return user
-
 @login_required(login_url='/login/')
 def passengerRequest(request):
 
-    active = False
+    active = ActiveRequest.objects.filter(owner=request.user, active=True).exists()
 
-    try:
-        post = request.POST
+    if not active:
+        try:
+            post = request.POST
 
-        currlat = post['currlat']
-        currlong = post['currlong']
-        destlat = post['destlat']
-        destlong = post['destlong']
-        price = post['price']
-        passengers = post['passengers']
-        owner = request.user
+            currlat = post['currlat']
+            currlong = post['currlong']
+            destlat = post['destlat']
+            destlong = post['destlong']
+            price = post['price']
+            passengers = post['passengers']
+            owner = request.user
 
-        ar = ActiveRequest(   owner=owner
-                            , position=Geoposition(currlat, currlong)
-                            , destination=Geoposition(destlat, destlong)
-                            , price=price
-                            , num_passengers=passengers)
+            ar = ActiveRequest(   owner=owner
+                                , position=Geoposition(currlat, currlong)
+                                , destination=Geoposition(destlat, destlong)
+                                , price=price
+                                , num_passengers=passengers)
 
-        ar.save()
+            ar.save()
 
-        active = True
+            active = True
 
-    except:
-        pass
-
-#    else:
-#        form = ActiveRequestCreationForm()
+        except:
+            pass
 
     return render(request, 'carshare/passenger.html', { 'active' : active })
 

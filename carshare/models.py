@@ -25,6 +25,7 @@ class ActiveRequest(models.Model):
     num_passengers = IntegerField(default=1)
     price = models.DecimalField(max_digits=8, decimal_places=2)
     successful = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
 
 
 class UserProfile(models.Model):
