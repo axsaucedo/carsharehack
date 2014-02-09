@@ -84,29 +84,34 @@ class PassengerViewSet(viewsets.ModelViewSet):
 @login_required(login_url='/login/')
 def passengerRequest(request):
 
-    active = ActiveRequest.objects.filter(owner=request.user, active=True).exists()
+    active = ActiveRequest.objects.filter(owner=request.user, active=True)
+    print  active
 
-    if not active:
+    if request.method == "POST":
         try:
-            post = request.POST
+            if active:
+                return render(request, 'carshare/passenger.html', { 'active' : active })
 
-            currlat = post['currlat']
-            currlong = post['currlong']
-            destlat = post['destlat']
-            destlong = post['destlong']
-            price = post['price']
-            passengers = post['passengers']
-            owner = request.user
+            else:
+                post = request.POST
 
-            ar = ActiveRequest(   owner=owner
-                                , position=Geoposition(currlat, currlong)
-                                , destination=Geoposition(destlat, destlong)
-                                , price=price
-                                , num_passengers=passengers)
+                currlat = post['currlat']
+                currlong = post['currlong']
+                destlat = post['destlat']
+                destlong = post['destlong']
+                price = post['price']
+                passengers = post['passengers']
+                owner = request.user
 
-            ar.save()
+                ar = ActiveRequest(   owner=owner
+                                    , position=Geoposition(currlat, currlong)
+                                    , destination=Geoposition(destlat, destlong)
+                                    , price=price
+                                    , num_passengers=passengers)
 
-            active = True
+                ar.save()
+
+                active = ar
 
         except:
             pass
@@ -135,13 +140,14 @@ class DriverCheckinViewSet(viewsets.ModelViewSet):
         lat = self.request.GET.get("latitude", "")
         long = self.request.GET.get("longitude", "")
 
-        qs = ActiveRequest.objects.filter(inprogress=False).filter(active=True).filter(successful=False)
+        qs = ActiveRequest.objects.filter(active=True).exclude(inprogress=True)
         current_driver = Driver.objects.get(owner__id=self.request.user.id)
         current_driver.position = Geoposition(lat, long)
         current_driver.save()
 
         dist_lam = lambda x: get_closest(x, current_driver)
         ordered_requests = sorted(qs, key=dist_lam)
+        print     ordered_requests, qs
 
         return ordered_requests
 
@@ -166,26 +172,37 @@ def logout_view(request):
 
 
 import json
-@require_POST
 def driver_accept_request(request):
     """
     The driver has accepted an active request.
     Find active request and set it to in progress
     """
-    response = {}
+    activerequest = None
 
     try:
-        activerequestid = request.POST['activerequestid']  # a dict of json stuff
-        this_request = ActiveRequest.objects.get(id=int(activerequestid))
-        this_request.inprogress = True
-        this_request.save()
+        activerequest = ActiveRequest.objects.get(driver=request.user, inprogress=True)
+    except ActiveRequest.DoesNotExist:
+        pass
 
-    except e:
-        print e
-        response = { "error" :  e }
+    if request.method == "POST" and not activerequest:
+        response = {}
 
-    return HttpResponse(json.dumps(response), content_type="application/json")
+        try:
+            activerequestid = request.POST['activerequestid']  # a dict of json stuff
+            this_request = ActiveRequest.objects.get(id=int(activerequestid))
+            this_request.driver = request.user
+            this_request.inprogress = True
+            this_request.save()
 
+        except e:
+            print e
+            response = { "error" :  e }
+
+        return HttpResponse(json.dumps(response), content_type="application/json")
+
+    print activerequest
+
+    return render(request, 'carshare/driver.html', { 'activerequest' : activerequest })
 
 
 

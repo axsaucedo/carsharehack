@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-    <div id="driver-site-info" data-give_ride_url={% url 'give-ride' %} data-get_passengers="http://localhost:8000/api/drivers/?format=json"></div>
+    <div id="driver-site-info" {% if not activerequest %}data-no_activerequest="true"{% endif %} data-give_ride_url={% url 'give-ride' %} data-get_passengers="http://localhost:8000/api/drivers/?format=json"></div>
 
     <div class="container">
         <div class="row">
@@ -24,9 +24,14 @@
                 </article>
             </div>
             <div class="col-md-6">
-                <div id="passengers-container" class="well">
+                {% if not activerequest %}
+                    <div id="passengers-container" class="well">
 
-                </div>
+                    </div>
+                {% else %}
+{#                    <h1>{{ activerequest }}</h1>#}
+                    <h1>Thanks! Your driving buddy will now be waiting for you to pick him up!</h1>
+                {% endif %}
             </div>
         </div>
     </div>
